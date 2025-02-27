@@ -176,11 +176,11 @@ formulario-contacto.component.ts
 
 Si el componente representa una acción específica (ej. modal, lista, tabla), el verbo debe **ir al final**.
 Ejemplos:
-
+```
 productos-listar.component.ts
 confirmacion-modal.component.ts
 pedidos-filtrar.component.ts
-
+```
 
 ### **2.2. Servicios**
 Los servicios deben:
