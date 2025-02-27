@@ -71,7 +71,7 @@ Este proyecto ha sido generado con [Angular CLI](https://github.com/angular/angu
 │   │   │   │   │   ├── 📄 registrate.interface.spec.ts
 │   │   │   │   │   ├── 📄 registrate.interface.ts
 │   │   │   ├── 📁 service/  # Servicios para autenticación
-│   │   │   │   │   ├── 📄 inniciasesion.service.ts
+│   │   │   │   │   ├── 📄 inicia-sesion.service.ts
 │   │   │   │   │   ├── 📄 registrate.service.ts
 │   │   ├── 📁 clientes/  # Módulo para gestión de clientes
 │   │   │   ├── 📁 interface/  # Interfaces relacionadas con clientes
@@ -209,18 +209,18 @@ Este comando ejecutará las pruebas utilizando **Karma** como test runner y **Ja
 
 Las pruebas unitarias permiten validar el correcto funcionamiento de cada componente, servicio o función de forma aislada. Sus principales beneficios incluyen:
 
-- 🔹 **Detección temprana de errores:** Identifica fallos en etapas iniciales del desarrollo.
-- 🔹 **Mayor estabilidad:** Evita que cambios en el código afecten funcionalidades previas.
-- 🔹 **Mantenimiento y escalabilidad:** Facilita la refactorización del código sin introducir errores.
+* 🔹 **Detección temprana de errores:** Identifica fallos en etapas iniciales del desarrollo.
+* 🔹 **Mayor estabilidad:** Evita que cambios en el código afecten funcionalidades previas.
+* 🔹 **Mantenimiento y escalabilidad:** Facilita la refactorización del código sin introducir errores.
 
 #### 🔍 Tipos de pruebas unitarias en Angular
 
 Las pruebas unitarias pueden clasificarse en diferentes categorías según su propósito:
 
-- ✅ **Pruebas de funciones y métodos:** Validan que las funciones devuelvan los resultados esperados.
-- ✅ **Pruebas de componentes:** Verifican la renderización, cambios en el estado y eventos del componente.
-- ✅ **Pruebas de servicios:** Evalúan la lógica de negocio y la comunicación con APIs externas.
-- ✅ **Pruebas de eventos y directivas:** Confirman el comportamiento de interacciones en la UI.
+* ✅ **Pruebas de funciones y métodos:** Validan que las funciones devuelvan los resultados esperados.
+* ✅ **Pruebas de componentes:** Verifican la renderización, cambios en el estado y eventos del componente.
+* ✅ **Pruebas de servicios:** Evalúan la lógica de negocio y la comunicación con APIs externas.
+* ✅ **Pruebas de eventos y directivas:** Confirman el comportamiento de interacciones en la UI.
 
 ***
 
@@ -238,9 +238,9 @@ ng e2e
 
 Las pruebas E2E validan el flujo completo de la aplicación simulando la interacción del usuario. Sus ventajas incluyen:
 
-- 🔹 **Simulación de escenarios reales de uso.**
-- 🔹 **Detección de errores en la integración entre componentes y servicios.**
-- 🔹 **Garantía de estabilidad en la navegación y experiencia del usuario.**
+* 🔹 **Simulación de escenarios reales de uso.**
+* 🔹 **Detección de errores en la integración entre componentes y servicios.**
+* 🔹 **Garantía de estabilidad en la navegación y experiencia del usuario.**
 
 ***
 
