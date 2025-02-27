@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IClientes } from '../../interfaces/clientes.interface';
 import { ClientesService } from '../../services/clientes.service';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 /**
  * Componente para mostrar y gestionar la lista de clientes.
@@ -11,7 +13,7 @@ import { ClientesService } from '../../services/clientes.service';
 @Component({
   selector: 'app-listado-clientes',
   standalone: true,
-  imports: [],
+  imports: [CommonModule, FormsModule],
   templateUrl: './listado-clientes.component.html',
   styleUrl: './listado-clientes.component.css'
 })

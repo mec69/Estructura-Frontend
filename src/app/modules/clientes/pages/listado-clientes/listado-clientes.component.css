@@ -7,43 +7,42 @@
 
 
 .clientes-container {
-    padding: 20px; 
-    font-family: Arial, sans-serif; 
-  }
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
 
-  .clientes-container h1 {
-    text-align: center; 
-    color: #333; 
-    margin-bottom: 20px; 
-  }
-  
-  .clientes-table {
-    width: 100%; 
-    border-collapse: collapse;  
-  }
-  
- 
-  .clientes-table th,
-  .clientes-table td {
-    padding: 12px; 
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-  }
-  
+.clientes-container h1 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+}
 
-  .clientes-table th {
-    background-color: #f4f4f4; 
-    font-weight: bold; 
-    color: #555; 
-  }
+.clientes-table {
+  width: 100%;
+  border-collapse: collapse;
+}
 
-  .clientes-table tr:hover {
-    background-color: #f9f9f9; 
-  }
-  
- 
-  .no-clientes {
-    text-align: center; 
-    color: #888; 
-    font-style: italic; /
-  }
+.clientes-table th,
+.clientes-table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+
+.clientes-table th {
+  background-color: #f4f4f4;
+  font-weight: bold;
+  color: #555;
+}
+
+.clientes-table tr:hover {
+  background-color: #f9f9f9;
+}
+
+
+.no-clientes {
+  text-align: center;
+  color: #888;
+  font-style: italic;
+}

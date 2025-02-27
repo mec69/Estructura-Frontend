@@ -1,28 +1,24 @@
-/**
- * Este componente gestiona el proceso de inicio de sesión de los usuarios.
- * Proporciona un formulario para que los usuarios ingresen su correo electrónico y contraseña,
- * y utiliza un servicio para autenticar las credenciales. Si el inicio de sesión es exitoso,
- * redirige al usuario al dashboard; de lo contrario, muestra un mensaje de error.
- */
 import { Component } from '@angular/core';
 import { Usuario } from '../../interface/inicioSesion.interface';
 import { IniciarsSesionService } from '../../service/iniciasesion.service';
 import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-iniciosesion',
+  selector: 'app-iniciar-sesion',
   standalone: true,
-  imports: [],
-  templateUrl: './iniciosesion.component.html',
-  styleUrl: './iniciosesion.component.css'
+  imports: [CommonModule],
+  templateUrl: './iniciar-sesion.component.html',
+  styleUrl: './iniciar-sesion.component.css'
 })
-export class IniciosesionComponent {
+export class IniciarSesionComponent {
+
   usuario: Usuario = { email: '', password: '' };
   mensajeError: string = '';
 
   constructor(
     private authService: IniciarsSesionService,
-     private router: Router) { }
+    private router: Router) { }
 
 
   onSubmit(): void {
@@ -37,4 +33,5 @@ export class IniciosesionComponent {
       },
     });
   }
+
 }
