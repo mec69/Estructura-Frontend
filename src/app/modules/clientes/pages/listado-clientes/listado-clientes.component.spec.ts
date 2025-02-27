@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { HttpClientModule } from '@angular/common/http'; // ✅ Importar HttpClientModule
 import { ListadoClientesComponent } from './listado-clientes.component';
 
 describe('ListadoClientesComponent', () => {
@@ -8,10 +8,14 @@ describe('ListadoClientesComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ListadoClientesComponent]
-    })
-    .compileComponents();
+      imports: [
+        HttpClientModule, // ✅ SOLUCIÓN: Importar HttpClientModule
+        ListadoClientesComponent // ✅ Importar el componente standalone
+      ]
+    }).compileComponents();
+  });
 
+  beforeEach(() => {
     fixture = TestBed.createComponent(ListadoClientesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

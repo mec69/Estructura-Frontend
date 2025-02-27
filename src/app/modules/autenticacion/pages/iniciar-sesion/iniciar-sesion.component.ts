@@ -3,16 +3,16 @@ import { Usuario } from '../../interface/inicioSesion.interface';
 import { IniciarsSesionService } from '../../service/iniciasesion.service';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-iniciar-sesion',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './iniciar-sesion.component.html',
   styleUrl: './iniciar-sesion.component.css'
 })
 export class IniciarSesionComponent {
-
   usuario: Usuario = { email: '', password: '' };
   mensajeError: string = '';
 

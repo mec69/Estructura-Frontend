@@ -14,6 +14,7 @@ import { FormsModule } from '@angular/forms';
   selector: 'app-listado-clientes',
   standalone: true,
   imports: [CommonModule, FormsModule],
+  providers: [ClientesService], // Proporciona el servicio
   templateUrl: './listado-clientes.component.html',
   styleUrl: './listado-clientes.component.css'
 })

@@ -13,7 +13,8 @@ import { Observable } from 'rxjs';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'Estructura Proyecto';
+  title = 'Estructura Proyecto'; // ✅ Coincide con la prueba
+
   private readmeUrl = 'assets/README.md';
 
   constructor(private http: HttpClient) { }

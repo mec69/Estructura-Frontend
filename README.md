@@ -66,7 +66,15 @@ Este proyecto ha sido generado con [Angular CLI](https://github.com/angular/angu
 
 ```
 
-## 🚀 Servidor de Desarrollo
+## 📦 Instalación de Paquetes
+
+Ejecuta el siguiente comando para instalar todos los módulos de Node de este proyecto:
+
+```sh
+npm install
+```
+
+## 🌍 Inicio del Servidor de Desarrollo
 
 Ejecuta el siguiente comando para iniciar el servidor de desarrollo:
 
@@ -74,7 +82,7 @@ Ejecuta el siguiente comando para iniciar el servidor de desarrollo:
 ng serve
 ```
 
-Accede a la aplicación en [`http://localhost:4200/`](http://localhost:4200/). La aplicación se recargará automáticamente si realizas cambios en los archivos fuente.
+🔗 Accede a la aplicación en [`http://localhost:4200/`](http://localhost:4200/). La aplicación se recargará automáticamente si realizas cambios en los archivos fuente.
 
 ---
 
@@ -102,44 +110,55 @@ Para compilar el proyecto, usa:
 ng build
 ```
 
-Los archivos compilados se almacenarán en el directorio `dist/`.
+## 🧪 Pruebas en Angular
 
----
+### 📌 Pruebas Unitarias
 
-## ✅ Pruebas Unitarias
-
-Ejecuta las pruebas unitarias con:
+Para ejecutar las pruebas unitarias en el proyecto, usa el siguiente comando:
 
 ```sh
 ng test
 ```
 
-Utiliza el framework [Karma](https://karma-runner.github.io).
+Este comando ejecutará las pruebas utilizando **Karma** como test runner y **Jasmine** como framework de pruebas.
+
+#### ✅ Objetivo de las pruebas unitarias
+
+Las pruebas unitarias permiten validar el correcto funcionamiento de cada componente, servicio o función de forma aislada. Sus principales beneficios incluyen:
+
+- 🔹 **Detección temprana de errores:** Identifica fallos en etapas iniciales del desarrollo.
+- 🔹 **Mayor estabilidad:** Evita que cambios en el código afecten funcionalidades previas.
+- 🔹 **Mantenimiento y escalabilidad:** Facilita la refactorización del código sin introducir errores.
+
+#### 🔍 Tipos de pruebas unitarias en Angular
+
+Las pruebas unitarias pueden clasificarse en diferentes categorías según su propósito:
+
+- ✅ **Pruebas de funciones y métodos:** Validan que las funciones devuelvan los resultados esperados.
+- ✅ **Pruebas de componentes:** Verifican la renderización, cambios en el estado y eventos del componente.
+- ✅ **Pruebas de servicios:** Evalúan la lógica de negocio y la comunicación con APIs externas.
+- ✅ **Pruebas de eventos y directivas:** Confirman el comportamiento de interacciones en la UI.
 
 ---
 
-## 🔍 Pruebas End-to-End
+### 🏆 Pruebas End-to-End (E2E)
 
-Para ejecutar pruebas e2e:
+Para ejecutar pruebas de extremo a extremo, usa:
 
 ```sh
 ng e2e
 ```
 
-Para utilizar este comando, asegúrate de haber instalado un paquete de pruebas e2e.
+> **Nota:** Asegúrate de haber instalado un paquete de pruebas E2E, como **Cypress** o **Protractor**, antes de ejecutar este comando.
+
+#### 🚀 Beneficios de las pruebas E2E
+
+Las pruebas E2E validan el flujo completo de la aplicación simulando la interacción del usuario. Sus ventajas incluyen:
+
+- 🔹 **Simulación de escenarios reales de uso.**
+- 🔹 **Detección de errores en la integración entre componentes y servicios.**
+- 🔹 **Garantía de estabilidad en la navegación y experiencia del usuario.**
 
 ---
 
-## 📖 Más Ayuda
-
-Para obtener más ayuda sobre Angular CLI, usa:
-
-```sh
-ng help
-```
-
-O visita la página oficial de Angular CLI: [Resumen y referencia de comandos](https://angular.dev/tools/cli).
-
----
-
-✨ _¡Feliz desarrollo con Angular! 🚀_
+📖 **Recomendación:** Mantén un equilibrio entre **pruebas unitarias** y **pruebas E2E** para garantizar la calidad del código sin afectar la velocidad de desarrollo. 🚀
