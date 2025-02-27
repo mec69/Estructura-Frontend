@@ -175,8 +175,10 @@ formulario-contacto.component.ts
 ````
 
 Si el componente representa una acción específica (ej. modal, lista, tabla), el verbo debe **ir al final**.
+
 Ejemplos:
-```
+
+```plaintext
 productos-listar.component.ts
 confirmacion-modal.component.ts
 pedidos-filtrar.component.ts
