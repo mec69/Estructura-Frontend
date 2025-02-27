@@ -6,7 +6,8 @@ Este proyecto ha sido generado con [Angular CLI](https://github.com/angular/angu
 
 ## 📁 Estructura de Directorios y Archivos
 
-<pre class="language-scss📁"><code class="lang-scss📁">📁 src/  # Código fuente de la aplicación
+```scss📁
+📁 src/  # Código fuente de la aplicación
 ├── 📁 app/  # Carpeta principal de la aplicación Angular
 │   ├── 📁 core/  # Funcionalidades centrales y compartidas
 │   │   ├── 📁 components/  # Componentes reutilizables
@@ -147,31 +148,39 @@ Este proyecto ha sido generado con [Angular CLI](https://github.com/angular/angu
 📄 tsconfig.json  # Configuración global de TypeScript
 📄 tsconfig.spec.json  # Configuración TypeScript para pruebas unitarias
 
-</code></pre>
+```
 
-## **2. Convenciones de Nombres**
+## **Convenciones de Nombres**
+
 Para estandarizar la nomenclatura en el equipo, se debe seguir un patrón claro para cada tipo de archivo.
 
-### **2.1. Componentes**
+### **Componentes**
+
 Los nombres de componentes deben:
-- **Iniciar con un sustantivo y terminar con `.component.ts`**.
-- Estar en **español** si todo el equipo usa este idioma.
-- Usar **UpperCamelCase** en la clase y **kebab-case** en los archivos.
+
+* **Iniciar con un sustantivo y terminar con `.component.ts`**.
+* Estar en **español** si todo el equipo usa este idioma.
+* Usar **UpperCamelCase** en la clase y **kebab-case** en los archivos.
 
 Ejemplo correcto:
-```typescript
+
+````typescript
 export class FormularioContactoComponent { }
 ```arar la lógica en **módulos independientes** para mejorar la mantenibilidad y carga diferida (*lazy loading*).
 - Usar `core/` p
-```
+````
+
 formulario-contacto.component.ts
-```
+
+````
 
 Si el componente representa una acción específica (ej. modal, lista, tabla), el verbo debe **ir al final**.
 Ejemplos:
-- `lista-productos.component.ts`
-- `modal-confirmacion.component.ts`
-- `tabla-pedidos.component.ts`
+
+productos-listar.component.ts
+confirmacion-modal.component.ts
+pedidos-filtrar.component.ts
+
 
 ### **2.2. Servicios**
 Los servicios deben:
@@ -181,65 +190,83 @@ Los servicios deben:
 Ejemplo correcto:
 ```typescript
 export class AutenticacionService { }
-```
+````
+
 ```
 autenticacion.service.ts
 ```
 
-### **2.3. Interfaces y Modelos de Datos**
+### **Interfaces y Modelos de Datos**
+
 Las interfaces deben:
-- Usar el sufijo `.interface.ts`.
-- Usar **UpperCamelCase** en el nombre de la clase.
+
+* Usar el sufijo `.interface.ts`.
+* Usar **UpperCamelCase** en el nombre de la clase.
 
 Ejemplo correcto:
+
 ```typescript
 export interface IUsuario {
   id: number;
   nombre: string;
 }
 ```
+
 ```
 usuario.interface.ts
 ```
 
-### **2.4. Guards**
+### **Guards**
+
 Los guards deben:
-- Usar el sufijo `.guard.ts`.
-- Iniciar con un sustantivo.
+
+* Usar el sufijo `.guard.ts`.
+* Iniciar con un sustantivo.
 
 Ejemplo correcto:
+
 ```typescript
 export class AuthGuard implements CanActivate { }
 ```
+
 ```
 auth.guard.ts
 ```
 
-### **2.5. Pipes y Directivas**
-- **Pipes:** Usar el sufijo `.pipe.ts` y el nombre en singular.
-- **Directivas:** Usar el sufijo `.directive.ts`.
+### **Pipes y Directivas**
+
+* **Pipes:** Usar el sufijo `.pipe.ts` y el nombre en singular.
+* **Directivas:** Usar el sufijo `.directive.ts`.
 
 Ejemplo correcto para pipe:
+
 ```typescript
 export class FechaPipe implements PipeTransform { }
 ```
+
 ```
 fecha.pipe.ts
 ```
+
 Ejemplo correcto para directiva:
+
 ```typescript
 export class ResaltarDirective { }
 ```
+
 ```
 resaltar.directive.ts
 ```
 
-### **2.6. Módulos**
+### **Módulos**
+
 Los módulos deben:
-- Usar el sufijo `.module.ts`.
-- Usar **UpperCamelCase** para el nombre de la clase.
+
+* Usar el sufijo `.module.ts`.
+* Usar **UpperCamelCase** para el nombre de la clase.
 
 Ejemplo correcto:
+
 ```typescript
 @NgModule({
   declarations: [FormularioContactoComponent],
@@ -248,47 +275,29 @@ Ejemplo correcto:
 })
 export class ContactoModule { }
 ```
+
 ```
 contacto.module.ts
 ```
 
-## **3. Reglas Generales para Nombres en Español**
-1. **Usar nombres claros y sin abreviaciones ambiguas.**
-   ✅ `lista-productos.component.ts`  
+## **Reglas Generales para Nombres en Español**
+
+1. **Usar nombres claros y sin abreviaciones ambiguas.** ✅ `lista-productos.component.ts`\
    ❌ `lst-prod.comp.ts` (abreviaciones no recomendadas)
-
-2. **Evitar tildes, ñ y caracteres especiales.**
-   ✅ `anio.pipe.ts`  
+2. **Evitar tildes, ñ y caracteres especiales.** ✅ `anio.pipe.ts`\
    ❌ `año.pipe.ts` (evitar la "ñ" para compatibilidad)
-
-3. **Mantener nombres consistentes en todos los módulos.**
-   ✅ `pedido.service.ts`  
+3. **Mantener nombres consistentes en todos los módulos.** ✅ `pedido.service.ts`\
    ❌ `pedido-helper.service.ts` (inconsistencia)
-
-4. **No mezclar idiomas en nombres de archivos.**
-   ✅ `tabla-productos.component.ts`  
+4. **No mezclar idiomas en nombres de archivos.** ✅ `tabla-productos.component.ts`\
    ❌ `product-table.component.ts` (si el resto del código está en español)
 
-## **4. Otras Buenas Prácticas**
+## **Uso de `core/` y `shared/`**
 
-### **4.1. Estructura del Código**
-- Mantén los **import** organizados en este orden:
-  1. Módulos de Angular (`@angular/*`).
-  2. Librerías externas (`rxjs`, `ngx-*`).
-  3. Archivos locales (`../../services/...`).
-
-Ejemplo:
-```typescript
-import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { AutenticacionService } from '../../services/autenticacion.service';
-```
-
-### **4.2. Uso de `core/` y `shared/`**
-- `core/`: Contiene servicios y módulos **globales**.
-- `shared/`: Contiene componentes reutilizables que **no dependen de la aplicación**.
+* `core/`: Contiene servicios y módulos **globales**.
+* `shared/`: Contiene componentes reutilizables que **no dependen de la aplicación**.
 
 📌 **Ejemplo de `core/`**
+
 ```
 core/
  ├── services/
@@ -297,7 +306,9 @@ core/
  ├── guards/
  │   ├── auth.guard.ts
 ```
+
 📌 **Ejemplo de `shared/`**
+
 ```
 shared/
  ├── components/
@@ -305,11 +316,6 @@ shared/
  │   │   ├── boton-primario.component.ts
 ```
 
-## **Conclusión**
-Aplicando estas convenciones, el equipo logrará:
-✅ Un código **más claro y mantenible**.  
-✅ Una estructura **modular y escalable**.  
-✅ Una nomenclatura **coherente y estandarizada**.
 
 
 ## 📦 Instalación de Paquetes
