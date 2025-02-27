@@ -1,12 +1,12 @@
-# 🌟 Proyecto Angular - Estructura y Guía de Desarrollo
+# Proyecto Angular - Estructura y Guía de Desarrollo
 
 Este proyecto ha sido generado con [Angular CLI](https://github.com/angular/angular-cli) versión **18.2.4**.
 
----
+***
 
 ## 📁 Estructura de Directorios y Archivos
 
-```scss📁 node_modules/  # Dependencias del proyecto instaladas mediante npm
+```scss📁
 📁 public/  # Archivos públicos que se sirven directamente
 📁 src/  # Código fuente de la aplicación
 ├── 📁 app/  # Carpeta principal de la aplicación Angular
@@ -18,6 +18,8 @@ Este proyecto ha sido generado con [Angular CLI](https://github.com/angular/angu
 │   │   ├── 📁 interface/  # Interfaces utilizadas en la aplicación
 │   │   │   ├── 📄 funciones.interface.ts  # Definiciones de interfaces para funciones
 │   │   │   ├── 📄 validaciones.interface.ts  # Definiciones de interfaces para validaciones
+│   │   ├── 📁 model/  # Contiene .env model
+│   │   │   ├── 📄 env.model.ts  # Archivo .env
 │   │   ├── 📁 pipe/  # Pipes personalizados
 │   │   │   ├── 📄 formatoFecha.pipe.ts  # Pipe para formatear fechas
 │   │   ├── 📁 service/  # Servicios compartidos en la aplicación
@@ -37,6 +39,9 @@ Este proyecto ha sido generado con [Angular CLI](https://github.com/angular/angu
 │   │   │   ├── 📁 pages/  # Páginas de clientes
 │   │   │   ├── 📁 services/  # Servicios relacionados con clientes
 │   │   ├── 📁 usuarios/  # Módulo para gestión de usuarios
+│   │   │   ├── 📁 interface/  # Interfaces relacionadas con usuarios
+│   │   │   ├── 📁 pages/  # Páginas de usuarios
+│   │   │   ├── 📁 services/  # Servicios relacionados con usuarios
 │   ├── 📁 shared/  # Componentes compartidos en toda la aplicación
 │   │   ├── 📁 footer/  # Componente del pie de página
 │   │   ├── 📁 header/  # Componente de la cabecera
@@ -76,7 +81,7 @@ ng serve
 
 Accede a la aplicación en [`http://localhost:4200/`](http://localhost:4200/). La aplicación se recargará automáticamente si realizas cambios en los archivos fuente.
 
----
+***
 
 ## ⚡ Generación de Código
 
@@ -92,7 +97,7 @@ También puedes generar otros elementos:
 ng generate directive|pipe|service|class|guard|interface|enum|module
 ```
 
----
+***
 
 ## 🏗️ Compilación
 
@@ -104,7 +109,7 @@ ng build
 
 Los archivos compilados se almacenarán en el directorio `dist/`.
 
----
+***
 
 ## ✅ Pruebas Unitarias
 
@@ -116,7 +121,7 @@ ng test
 
 Utiliza el framework [Karma](https://karma-runner.github.io).
 
----
+***
 
 ## 🔍 Pruebas End-to-End
 
@@ -128,7 +133,7 @@ ng e2e
 
 Para utilizar este comando, asegúrate de haber instalado un paquete de pruebas e2e.
 
----
+***
 
 ## 📖 Más Ayuda
 
@@ -140,6 +145,6 @@ ng help
 
 O visita la página oficial de Angular CLI: [Resumen y referencia de comandos](https://angular.dev/tools/cli).
 
----
+***
 
 ✨ _¡Feliz desarrollo con Angular! 🚀_
