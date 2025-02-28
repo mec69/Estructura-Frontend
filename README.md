@@ -1,8 +1,10 @@
 # Proyecto Angular - Estructura y Guía de Desarrollo
 
-### Proyecto Angular - Estructura y Guía de Desarrollo
+## Proyecto Angular - Estructura y Guía de Desarrollo
 
-### Tabla de Contenidos
+#### Proyecto Angular - Estructura y Guía de Desarrollo
+
+#### Tabla de Contenidos
 
 * [Estructura de Directorios y Archivos](./#estructura-de-directorios-y-archivos)
 * [Instalación de Paquetes](./#instalación-de-paquetes)
@@ -11,9 +13,9 @@
 * [Pruebas Unitarias](./#pruebas-unitarias)
 * [Configuración del entorno E2E](./#Configuración-del-entorno-e2e)
 
-#### Estructura de Directorios y Archivos
+**Estructura de Directorios y Archivos**
 
-```scss
+```markup
 📁 src/  # Código fuente de la aplicación
 ├── 📁 app/  # Carpeta principal de la aplicación Angular
 │   ├── 📁 core/  # Funcionalidades centrales y compartidas
@@ -155,39 +157,49 @@
 📄 tsconfig.json  # Configuración global de TypeScript
 📄 tsconfig.spec.json  # Configuración TypeScript para pruebas unitarias
 ```
-# 📌 Convenciones de Nomenclatura en Angular
 
-### 🏗 Componentes
+## 📌 Convenciones de Nomenclatura en Angular
+
+#### 🏗 Componentes
 
 Los nombres de los componentes deben:
 
-- Usar **kebab-case** (letras minúsculas separadas por guiones).
-- Terminar en `.component.ts`.
-- Ser descriptivos sobre su funcionalidad.
+* Usar **kebab-case** (letras minúsculas separadas por guiones).
+* Terminar en `.component.ts`.
+* Ser descriptivos sobre su funcionalidad.
 
 Ejemplos:
 
 ```sh
-producto-detalle.component.ts
-usuario-lista.component.ts
-pedido-tabla.component.ts
+productos-tienda.component.ts
+modal-confirmacion.component.ts
 ```
-### 📂 Carpetas
 
-- Usar **kebab-case**.
-- Representar la funcionalidad o entidad que agrupan.
+Nota: Si el componente representa una acción específica (ej. listar, filtrar, actualizar), el **verbo debe ir al final**.
+
+```
+productos-listar.component.ts → "Listar" es el verbo y está al final.
+pedidos-filtrar.component.ts → "Filtrar" es el verbo y está al final.
+```
+
+#### 📂 Carpetas
+
+* Deben nombrarse en **kebab-case**.
+* Representan la funcionalidad o entidad que agrupan.
 
 Ejemplo:
 
 ```sh
-ventas/
-inventario/
-usuarios/
+gestion-usuarios/
+gestion-productos/
+reporte-ventas/
 ```
-### 📜 Servicios
 
-- Usar **camelCase**.
-- Terminar con `.service.ts`.
+#### 📜 Servicios
+
+* Usar **camelCase**.
+* Iniciar con un sustantivo que describa su propósito.
+* Terminar con `.service.ts`.
 
 Ejemplo:
 
@@ -196,10 +208,11 @@ producto.service.ts
 usuario.service.ts
 pedido.service.ts
 ```
-### 📊 Modelos
 
-- Usar **PascalCase**.
-- Terminar con `.model.ts`.
+#### 📊 Modelos
+
+* Usar **PascalCase**.
+* Terminar con `.model.ts`.
 
 Ejemplo:
 
@@ -208,30 +221,31 @@ Producto.model.ts
 Usuario.model.ts
 Pedido.model.ts
 ```
-### 🏛 Interfaces
 
-- Usar **PascalCase**.
-- Prefijar con `I`.
+#### 🏛 Interfaces
+
+* Usar **PascalCase**.
+* Prefijar con `I`seguido de un sustantivo.
 
 Ejemplo:
 
 ```sh
-IProducto.ts
-IUsuario.ts
-IPedido.ts
+IProducto.interface.ts
+IUsuario.interface.ts
+IPedido.interface.ts
 ```
 
-### 📌 Otros archivos
+#### 📌 Otros archivos
 
-| Tipo           | Ejemplo                        |
-|---------------|--------------------------------|
-| Directivas    | `resaltar.directive.ts`       |
-| Pipes         | `formatear-fecha.pipe.ts`     |
-| Guards        | `auth.guard.ts`               |
-| Enums         | `estado-pedido.enum.ts`       |
-| Módulos       | `ventas.module.ts`            |
+| Tipo       | Ejemplo                   |
+| ---------- | ------------------------- |
+| Directivas | `resaltar.directive.ts`   |
+| Pipes      | `formatear-fecha.pipe.ts` |
+| Guards     | `auth.guard.ts`           |
+| Enums      | `estado-pedido.enum.ts`   |
+| Módulos    | `ventas.module.ts`        |
 
-#### Instalación de Paquetes
+### **Instalación de Paquetes**
 
 Ejecuta el siguiente comando para instalar todos los módulos de Node de este proyecto:
 
@@ -239,7 +253,7 @@ Ejecuta el siguiente comando para instalar todos los módulos de Node de este pr
 npm install
 ```
 
-#### Inicio del Servidor de Desarrollo
+### **Inicio del Servidor de Desarrollo**
 
 Ejecuta el siguiente comando para iniciar el servidor de desarrollo:
 
@@ -247,11 +261,11 @@ Ejecuta el siguiente comando para iniciar el servidor de desarrollo:
 ng serve
 ```
 
-#### 🔗 Accede a la aplicación
+### **🔗 Accede a la aplicación**
 
 en [`http://localhost:4200/`](http://localhost:4200/). La aplicación se recargará automáticamente si realizas cambios en los archivos fuente.
 
-#### ⚡ Generación de Código
+### **⚡ Generación de Código**
 
 Para generar un nuevo componente, ejecuta:
 
@@ -273,7 +287,7 @@ Para compilar el proyecto, usa:
 ng build
 ```
 
-**Pruebas Unitarias**
+### **Pruebas Unitarias**
 
 Para ejecutar las pruebas unitarias en el proyecto, usa el siguiente comando:
 
@@ -281,7 +295,7 @@ Para ejecutar las pruebas unitarias en el proyecto, usa el siguiente comando:
 ng test
 ```
 
-#### 1️⃣ Configurar el `usuarios.service.ts`
+#### **1️⃣ Configurar el `usuarios.service.ts`**
 
 Este servicio lista los usuarios y se usará en el test.
 
@@ -304,7 +318,7 @@ export class UsuariosService {
 }
 ```
 
-#### 2️⃣ Componente `usuarios.component.ts`
+#### **2️⃣ Componente `usuarios.component.ts`**
 
 Este componente usa `UsuariosService` para listar usuarios.
 
@@ -330,7 +344,7 @@ export class UsuariosComponent implements OnInit {
 }
 ```
 
-#### 3️⃣ Test `usuarios.component.spec.ts`
+#### **3️⃣ Test `usuarios.component.spec.ts`**
 
 Para probar el componente, usamos `HttpTestingController` para simular la API.
 
@@ -388,7 +402,7 @@ describe("UsuariosComponent", () => {
 });
 ```
 
-#### 4️⃣ Ejecutar las Pruebas
+#### **4️⃣ Ejecutar las Pruebas**
 
 Para correr los tests, usa el siguiente comando en la terminal:
 
@@ -396,7 +410,7 @@ Para correr los tests, usa el siguiente comando en la terminal:
 ng test
 ```
 
-#### 📌 Explicación
+**📌 Explicación**
 
 * ✅ Se configura el módulo de prueba con `HttpClientTestingModule` para mockear peticiones HTTP.
 * ✅ Se inyecta `HttpTestingController` para interceptar y simular respuestas HTTP.
@@ -406,9 +420,9 @@ ng test
 * ✅ Se usa `flush()` para devolver los datos simulados a la prueba.
 * ✅ Con esta prueba, aseguramos que el componente `UsuariosComponent` obtiene y muestra correctamente la lista de usuarios. 🚀
 
-## Configuración del entorno E2E
+### Configuración del entorno E2E
 
-### 1. Instalación de Playwright
+#### 1. Instalación de Playwright
 
 Ejecuta el siguiente comando para agregar Playwright a tu proyecto:
 
@@ -420,9 +434,9 @@ Luego, crea el archivo de prueba en `e2e/src/app.e2e-spec.ts`.
 
 ***
 
-### 2. Crear la prueba E2E para el servicio de usuarios
+#### 2. Crear la prueba E2E para el servicio de usuarios
 
-#### **Servicio `UsuarioService`**
+**Servicio `UsuarioService`**
 
 Archivo: `usuario.service.ts`
 
@@ -477,7 +491,7 @@ export class UsuariosComponent implements OnInit {
 
 ***
 
-### 3. Crear la prueba E2E
+#### 3. Crear la prueba E2E
 
 Archivo: `e2e/src/app.e2e-spec.ts`
 
@@ -499,9 +513,9 @@ test("Debe listar usuarios en la página", async ({ page }) => {
 
 ***
 
-### 4. Ejecutar las pruebas
+#### 4. Ejecutar las pruebas
 
-&#x20;Para correr los tests, usa el siguiente comando en la terminal:
+Para correr los tests, usa el siguiente comando en la terminal:
 
 Inicia la aplicación en modo desarrollo:
 
@@ -517,7 +531,7 @@ npx playwright test
 
 ***
 
-### 5. Explicación del test
+#### 5. Explicación del test
 
 * ✅ Abre la página `/usuarios`.
 * ✅ Espera que se carguen los usuarios con `waitForSelector('li')`.
@@ -537,5 +551,3 @@ Las pruebas E2E validan el flujo completo de la aplicación simulando la interac
 ***
 
 📖 **Recomendación:** Mantén un equilibrio entre **pruebas unitarias** y **pruebas E2E** para garantizar la calidad del código sin afectar la velocidad de desarrollo. 🚀
-
-
