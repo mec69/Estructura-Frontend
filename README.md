@@ -155,6 +155,71 @@ Este proyecto ha sido generado con [Angular CLI](https://github.com/angular/angu
 📄 tsconfig.json  # Configuración global de TypeScript
 📄 tsconfig.spec.json  # Configuración TypeScript para pruebas unitarias
 ```
+# 📌 Convenciones de Nomenclatura en Angular
+
+### 🏗 Componentes
+
+Los nombres de los componentes deben:
+
+- Usar **kebab-case** (letras minúsculas separadas por guiones).
+- Terminar en `.component.ts`.
+- Ser descriptivos sobre su funcionalidad.
+
+Ejemplos:
+
+```sh
+producto-detalle.component.ts
+usuario-lista.component.ts
+pedido-tabla.component.ts
+```
+### 📂 Carpetas
+
+- Usar **kebab-case**.
+- Representar la funcionalidad o entidad que agrupan.
+
+Ejemplo:
+
+```sh
+ventas/
+inventario/
+usuarios/
+```
+### 📜 Servicios
+
+- Usar **camelCase**.
+- Terminar con `.service.ts`.
+
+Ejemplo:
+
+```sh
+producto.service.ts
+usuario.service.ts
+pedido.service.ts
+```
+### 📊 Modelos
+
+- Usar **PascalCase**.
+- Terminar con `.model.ts`.
+
+Ejemplo:
+
+```plaintext
+Producto.model.ts
+Usuario.model.ts
+Pedido.model.ts
+```
+### 🏛 Interfaces
+
+- Usar **PascalCase**.
+- Prefijar con `I`.
+
+Ejemplo:
+
+```sh
+IProducto.ts
+IUsuario.ts
+IPedido.ts
+```
 
 ## Instalación de Paquetes
 
