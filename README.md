@@ -2,8 +2,6 @@
 
 Este proyecto ha sido generado con [Angular CLI](https://github.com/angular/angular-cli) versión **18.2.4**.
 
----
-
 ## Tabla de Contenidos
 
 - [Estructura de Directorios y Archivos](#estructura-de-directorios-y-archivos)
@@ -16,7 +14,6 @@ Este proyecto ha sido generado con [Angular CLI](https://github.com/angular/angu
 ## Estructura de Directorios y Archivos
 
 ```scss
-
 📁 src/  # Código fuente de la aplicación
 ├── 📁 app/  # Carpeta principal de la aplicación Angular
 │   ├── 📁 core/  # Funcionalidades centrales y compartidas
@@ -193,8 +190,6 @@ También puedes generar otros elementos:
 ng generate directive|pipe|service|class|guard|interface|enum|module
 ```
 
----
-
 ## Compilación
 
 Para compilar el proyecto, usa:
@@ -337,10 +332,8 @@ ng test
 
 ✅ Con esta prueba, aseguramos que el componente `UsuariosComponent` obtiene y muestra correctamente la lista de usuarios. 🚀
 
----
 
 # Configuración del entorno E2E
-
 Desde Angular 17, se recomienda usar Playwright para pruebas E2E.
 
 ## 1. Instalación de Playwright
@@ -353,7 +346,6 @@ ng add @angular/playwright
 
 Luego, crea el archivo de prueba en `e2e/src/app.e2e-spec.ts`.
 
----
 
 ## 2. Crear la prueba E2E para el servicio de usuarios
 
@@ -433,7 +425,6 @@ test("Debe listar usuarios en la página", async ({ page }) => {
 ```
 
 ---
-
 ## 4. Ejecutar las pruebas
 
 Inicia la aplicación en modo desarrollo:
@@ -463,9 +454,9 @@ npx playwright test
 
 Las pruebas E2E validan el flujo completo de la aplicación simulando la interacción del usuario. Sus ventajas incluyen:
 
-* 🔹 **Simulación de escenarios reales de uso.**
-* 🔹 **Detección de errores en la integración entre componentes y servicios.**
-* 🔹 **Garantía de estabilidad en la navegación y experiencia del usuario.**
+- 🔹 **Simulación de escenarios reales de uso.**
+- 🔹 **Detección de errores en la integración entre componentes y servicios.**
+- 🔹 **Garantía de estabilidad en la navegación y experiencia del usuario.**
 
 ---
 
