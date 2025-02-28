@@ -221,6 +221,16 @@ IUsuario.ts
 IPedido.ts
 ```
 
+### 📌 Otros archivos
+
+| Tipo           | Ejemplo                        |
+|---------------|--------------------------------|
+| Directivas    | `resaltar.directive.ts`       |
+| Pipes         | `formatear-fecha.pipe.ts`     |
+| Guards        | `auth.guard.ts`               |
+| Enums         | `estado-pedido.enum.ts`       |
+| Módulos       | `ventas.module.ts`            |
+
 #### Instalación de Paquetes
 
 Ejecuta el siguiente comando para instalar todos los módulos de Node de este proyecto:
@@ -527,3 +537,5 @@ Las pruebas E2E validan el flujo completo de la aplicación simulando la interac
 ***
 
 📖 **Recomendación:** Mantén un equilibrio entre **pruebas unitarias** y **pruebas E2E** para garantizar la calidad del código sin afectar la velocidad de desarrollo. 🚀
+
+
