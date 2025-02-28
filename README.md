@@ -166,29 +166,6 @@ Ejecuta el siguiente comando para instalar todos los módulos de Node de este pr
 npm install
 ```
 
-```
-formulario-contacto.component.ts
-```
-
-Si el componente representa una acción específica (ej. modal, lista, tabla), el verbo debe **ir al final**.
-
-Ejemplos:
-
-```
-productos-listar.component.ts
-confirmacion-modal.component.ts
-pedidos-filtrar.component.ts
-```
-
-### Servicios
-
-Los servicios deben:
-
-* Usar el **sufijo `.service.ts`**.
-* Iniciar con un sustantivo que describa su propósito.
-
-Ejemplo correcto:
-
 ### Inicio del Servidor de Desarrollo
 
 Ejecuta el siguiente comando para iniciar el servidor de desarrollo:
@@ -348,9 +325,13 @@ ng test
 
 ### 📌 Explicación
 
-✅ Se configura el módulo de prueba con `HttpClientTestingModule` para mockear peticiones HTTP. ✅ Se inyecta `HttpTestingController` para interceptar y simular respuestas HTTP. ✅ Se prueba que el componente se cree correctamente. ✅ Se prueba que `listarUsuarios()` obtenga los datos y los asigne correctamente al array `usuarios`. ✅ Se usa `expectOne()` para verificar que solo haya una petición HTTP con `GET`. ✅ Se usa `flush()` para devolver los datos simulados a la prueba.
-
-✅ Con esta prueba, aseguramos que el componente `UsuariosComponent` obtiene y muestra correctamente la lista de usuarios. 🚀
+* ✅ Se configura el módulo de prueba con `HttpClientTestingModule` para mockear peticiones HTTP.&#x20;
+* ✅ Se inyecta `HttpTestingController` para interceptar y simular respuestas HTTP. &#x20;
+* ✅ Se prueba que el componente se cree correctamente.&#x20;
+* ✅ Se prueba que `listarUsuarios()` obtenga los datos y los asigne correctamente al array `usuarios`.&#x20;
+* ✅ Se usa `expectOne()` para verificar que solo haya una petición HTTP con `GET`.&#x20;
+* ✅ Se usa `flush()` para devolver los datos simulados a la prueba.
+* ✅ Con esta prueba, aseguramos que el componente `UsuariosComponent` obtiene y muestra correctamente la lista de usuarios. 🚀
 
 ## Configuración del entorno E2E
 
