@@ -11,7 +11,7 @@ Este proyecto ha sido generado con [Angular CLI](https://github.com/angular/angu
 - [Inicio del Servidor de Desarrollo](#inicio-del-servidor-de-desarrollo)
 - [Compilación](#compilación)
 - [Pruebas Unitarias](#pruebas-unitarias)
-- [Pruebas de Carga con JMeter](#pruebas-de-carga-con-jmeter)
+- [Configuración del entorno E2E](#Configuración-del-entorno-e2e)
 
 ## Estructura de Directorios y Archivos
 
@@ -211,92 +211,253 @@ Para ejecutar las pruebas unitarias en el proyecto, usa el siguiente comando:
 ng test
 ```
 
-Este comando ejecutará las pruebas utilizando **Karma** como test runner y **Jasmine** como framework de pruebas.
+## 1️⃣ Configurar el `usuarios.service.ts`
 
-### 🛠 Código del Test - listado-usuarios.component.spec.ts
+Este servicio lista los usuarios y se usará en el test.
+
+```typescript
+import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+import { Observable } from "rxjs";
+
+@Injectable({
+  providedIn: "root",
+})
+export class UsuariosService {
+  private apiUrl = "https://jsonplaceholder.typicode.com/users";
+
+  constructor(private http: HttpClient) {}
+
+  listarUsuarios(): Observable<any[]> {
+    return this.http.get<any[]>(this.apiUrl);
+  }
+}
+```
+
+## 2️⃣ Componente `usuarios.component.ts`
+
+Este componente usa `UsuariosService` para listar usuarios.
+
+```typescript
+import { Component, OnInit } from "@angular/core";
+import { UsuariosService } from "../services/usuarios.service";
+
+@Component({
+  selector: "app-usuarios",
+  templateUrl: "./usuarios.component.html",
+  styleUrls: ["./usuarios.component.scss"],
+})
+export class UsuariosComponent implements OnInit {
+  usuarios: any[] = [];
+
+  constructor(private usuariosService: UsuariosService) {}
+
+  ngOnInit() {
+    this.usuariosService.listarUsuarios().subscribe((data) => {
+      this.usuarios = data;
+    });
+  }
+}
+```
+
+## 3️⃣ Test `usuarios.component.spec.ts`
+
+Para probar el componente, usamos `HttpTestingController` para simular la API.
 
 ```typescript
 import { ComponentFixture, TestBed } from "@angular/core/testing";
-import { ListadoUsuariosComponent } from "./listado-usuarios.component";
-import { UserService } from "../../service/usuarios.service";
-import { HttpClientTestingModule } from "@angular/common/http/testing";
-import { lastValueFrom } from "rxjs";
+import { UsuariosComponent } from "./usuarios.component";
+import { UsuariosService } from "../services/usuarios.service";
+import { HttpClientTestingModule, HttpTestingController } from "@angular/common/http/testing";
 
-jasmine.DEFAULT_TIMEOUT_INTERVAL = 30000; // ⏳ Aumenta timeout a 30 segundos
-
-describe("ListadoUsuariosComponent - Prueba con API Real", () => {
-  let component: ListadoUsuariosComponent;
-  let fixture: ComponentFixture<ListadoUsuariosComponent>;
-  let userService: UserService;
+describe("UsuariosComponent", () => {
+  let component: UsuariosComponent;
+  let fixture: ComponentFixture<UsuariosComponent>;
+  let usuariosService: UsuariosService;
+  let httpMock: HttpTestingController;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        ListadoUsuariosComponent, // ✅ Se importa como standalone
-        HttpClientTestingModule, // ✅ Permite pruebas HTTP
-      ],
-      providers: [UserService],
+      declarations: [UsuariosComponent],
+      imports: [HttpClientTestingModule],
+      providers: [UsuariosService],
     }).compileComponents();
-
-    fixture = TestBed.createComponent(ListadoUsuariosComponent);
-    component = fixture.componentInstance;
-    userService = TestBed.inject(UserService);
   });
 
-  it("debería obtener usuarios reales desde la API", async () => {
-    const startTime = performance.now();
+  beforeEach(() => {
+    fixture = TestBed.createComponent(UsuariosComponent);
+    component = fixture.componentInstance;
+    usuariosService = TestBed.inject(UsuariosService);
+    httpMock = TestBed.inject(HttpTestingController);
+    fixture.detectChanges();
+  });
 
-    try {
-      const usuarios = await lastValueFrom(userService.getUsers()); // ✅ Manejo correcto de observables
+  afterEach(() => {
+    httpMock.verify();
+  });
 
-      const endTime = performance.now();
-      const responseTime = (endTime - startTime).toFixed(2);
+  it("debería crear el componente", () => {
+    expect(component).toBeTruthy();
+  });
 
-      console.log("📄 Usuarios recibidos:", usuarios);
-      console.log("⏳ Tiempo de respuesta:", responseTime, "ms");
+  it("debería listar usuarios correctamente", () => {
+    const mockUsuarios = [
+      { id: 1, name: "Juan" },
+      { id: 2, name: "María" },
+    ];
 
-      expect(usuarios).withContext("⚠️ La API devolvió una respuesta vacía o nula").toBeTruthy(); // ✅ Verifica que la API devolvió algo
+    component.ngOnInit();
 
-      expect(Array.isArray(usuarios)).withContext("⚠️ La API no devolvió un array, revisa el formato de respuesta").toBeTrue(); // ✅ Confirma que sea un array
+    const req = httpMock.expectOne("https://jsonplaceholder.typicode.com/users");
+    expect(req.request.method).toBe("GET");
+    req.flush(mockUsuarios);
 
-      expect(usuarios.length).withContext(`⚠️ La API devolvió un array vacío. Tiempo de respuesta: ${responseTime}ms`).toBeGreaterThan(0); // ✅ Confirma que haya datos
-
-      console.log("✅ Prueba de API superada con éxito. Datos recibidos correctamente.");
-    } catch (error) {
-      fail(`❌ Error al obtener usuarios: ${error}`);
-    }
+    expect(component.usuarios.length).toBe(2);
+    expect(component.usuarios).toEqual(mockUsuarios);
   });
 });
 ```
 
-#### ✅ Objetivo de las pruebas unitarias
+## 4️⃣ Ejecutar las Pruebas
 
-Las pruebas unitarias permiten validar el correcto funcionamiento de cada componente, servicio o función de forma aislada. Sus principales beneficios incluyen:
+Para correr los tests, usa el siguiente comando en la terminal:
 
-- 🔹 **Detección temprana de errores:** Identifica fallos en etapas iniciales del desarrollo.
-- 🔹 **Mayor estabilidad:** Evita que cambios en el código afecten funcionalidades previas.
-- 🔹 **Mantenimiento y escalabilidad:** Facilita la refactorización del código sin introducir errores.
+```sh
+ng test
+```
 
-#### 🔍 Tipos de pruebas unitarias en Angular
+## 📌 Explicación
 
-Las pruebas unitarias pueden clasificarse en diferentes categorías según su propósito:
+✅ Se configura el módulo de prueba con `HttpClientTestingModule` para mockear peticiones HTTP.
+✅ Se inyecta `HttpTestingController` para interceptar y simular respuestas HTTP.
+✅ Se prueba que el componente se cree correctamente.
+✅ Se prueba que `listarUsuarios()` obtenga los datos y los asigne correctamente al array `usuarios`.
+✅ Se usa `expectOne()` para verificar que solo haya una petición HTTP con `GET`.
+✅ Se usa `flush()` para devolver los datos simulados a la prueba.
 
-- ✅ **Pruebas de funciones y métodos:** Validan que las funciones devuelvan los resultados esperados.
-- ✅ **Pruebas de componentes:** Verifican la renderización, cambios en el estado y eventos del componente.
-- ✅ **Pruebas de servicios:** Evalúan la lógica de negocio y la comunicación con APIs externas.
-- ✅ **Pruebas de eventos y directivas:** Confirman el comportamiento de interacciones en la UI.
+✅ Con esta prueba, aseguramos que el componente `UsuariosComponent` obtiene y muestra correctamente la lista de usuarios. 🚀
 
 ---
 
-### 🏆 Pruebas End-to-End (E2E)
+# Configuración del entorno E2E
 
-Para ejecutar pruebas de extremo a extremo, usa:
+Desde Angular 17, se recomienda usar Playwright para pruebas E2E.
+
+## 1. Instalación de Playwright
+
+Ejecuta el siguiente comando para agregar Playwright a tu proyecto:
 
 ```sh
-ng e2e
+ng add @angular/playwright
 ```
 
-> **Nota:** Asegúrate de haber instalado un paquete de pruebas E2E, como **Cypress** o **Protractor**, antes de ejecutar este comando.
+Luego, crea el archivo de prueba en `e2e/src/app.e2e-spec.ts`.
+
+---
+
+## 2. Crear la prueba E2E para el servicio de usuarios
+
+### Servicio `UsuarioService`
+
+Archivo: `usuario.service.ts`
+
+```typescript
+import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+import { Observable } from "rxjs";
+
+@Injectable({
+  providedIn: "root",
+})
+export class UsuarioService {
+  private apiUrl = "https://jsonplaceholder.typicode.com/users";
+
+  constructor(private http: HttpClient) {}
+
+  listarUsuarios(): Observable<any[]> {
+    return this.http.get<any[]>(this.apiUrl);
+  }
+}
+```
+
+### Componente `UsuariosComponent`
+
+Archivo: `usuarios.component.ts`
+
+```typescript
+import { Component, OnInit } from "@angular/core";
+import { UsuarioService } from "../services/usuario.service";
+
+@Component({
+  selector: "app-usuarios",
+  template: `
+    <h2>Lista de Usuarios</h2>
+    <ul>
+      <li *ngFor="let usuario of usuarios">{{ usuario.name }}</li>
+    </ul>
+  `,
+})
+export class UsuariosComponent implements OnInit {
+  usuarios: any[] = [];
+
+  constructor(private usuarioService: UsuarioService) {}
+
+  ngOnInit() {
+    this.usuarioService.listarUsuarios().subscribe((data) => {
+      this.usuarios = data;
+    });
+  }
+}
+```
+
+---
+
+## 3. Crear la prueba E2E
+
+Archivo: `e2e/src/app.e2e-spec.ts`
+
+```typescript
+import { test, expect } from "@playwright/test";
+
+test("Debe listar usuarios en la página", async ({ page }) => {
+  // Ir a la página donde se listan los usuarios
+  await page.goto("http://localhost:4200/usuarios");
+
+  // Esperar a que los usuarios se carguen
+  await page.waitForSelector("li");
+
+  // Verificar que al menos 1 usuario está listado
+  const usuarios = await page.locator("li").count();
+  expect(usuarios).toBeGreaterThan(0);
+});
+```
+
+---
+
+## 4. Ejecutar las pruebas
+
+Inicia la aplicación en modo desarrollo:
+
+```sh
+ng serve
+```
+
+Luego, ejecuta la prueba E2E con:
+
+```sh
+npx playwright test
+```
+
+---
+
+## 5. Explicación del test
+
+- ✅ Abre la página `/usuarios`.
+- ✅ Espera que se carguen los usuarios con `waitForSelector('li')`.
+- ✅ Cuenta los elementos `<li>` para verificar que la lista no está vacía.
+- ✅ Verifica que al menos hay 1 usuario cargado con `expect().toBeGreaterThan(0)`.
+
+---
 
 #### 🚀 Beneficios de las pruebas E2E
 
