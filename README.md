@@ -2,11 +2,22 @@
 
 Este proyecto ha sido generado con [Angular CLI](https://github.com/angular/angular-cli) versión **18.2.4**.
 
-***
+---
 
-## 📁 Estructura de Directorios y Archivos
+## Tabla de Contenidos
 
-<pre class="language-scss📁"><code class="lang-scss📁">📁 src/  # Código fuente de la aplicación
+- [Estructura de Directorios y Archivos](#estructura-de-directorios-y-archivos)
+- [Instalación de Paquetes](#instalación-de-paquetes)
+- [Inicio del Servidor de Desarrollo](#inicio-del-servidor-de-desarrollo)
+- [Compilación](#compilación)
+- [Pruebas Unitarias](#pruebas-unitarias)
+- [Pruebas de Carga con JMeter](#pruebas-de-carga-con-jmeter)
+
+## Estructura de Directorios y Archivos
+
+```scss
+
+📁 src/  # Código fuente de la aplicación
 ├── 📁 app/  # Carpeta principal de la aplicación Angular
 │   ├── 📁 core/  # Funcionalidades centrales y compartidas
 │   │   ├── 📁 components/  # Componentes reutilizables
@@ -37,15 +48,15 @@ Este proyecto ha sido generado con [Angular CLI](https://github.com/angular/angu
 │   │   │   ├── 📄 validaciones.service.ts  # Servicio para validaciones
 │   ├── 📁 layout/  # Componentes relacionados con el diseño
 │   │   ├── 📁 pagina-principal/  # Componentes de la página principal
-│   │   │   ├── 📄 pagina-principal.component.css  # 
-│   │   │   ├── 📄 pagina-principal.component.html  # 
-│   │   │   ├── 📄 pagina-principal.component.spec.ts  # 
-│   │   │   ├── 📄 pagina-principal.component.ts  # 
+│   │   │   ├── 📄 pagina-principal.component.css  #
+│   │   │   ├── 📄 pagina-principal.component.html  #
+│   │   │   ├── 📄 pagina-principal.component.spec.ts  #
+│   │   │   ├── 📄 pagina-principal.component.ts  #
 │   │   ├── 📁 pagina-secundaria/  # Componentes de la página secundaria
-│   │   │   ├── 📄 pagina-secundaria.component.css  # 
-│   │   │   ├── 📄 pagina-secundaria.component.html  # 
-│   │   │   ├── 📄 pagina-secundaria.component.spec.ts  # 
-│   │   │   ├── 📄 pagina-secundaria.component.ts  # 
+│   │   │   ├── 📄 pagina-secundaria.component.css  #
+│   │   │   ├── 📄 pagina-secundaria.component.html  #
+│   │   │   ├── 📄 pagina-secundaria.component.spec.ts  #
+│   │   │   ├── 📄 pagina-secundaria.component.ts  #
 │   ├── 📁 modules/  # Módulos funcionales de la aplicación
 │   │   ├── 📁 autenticacion/  # Módulo de autenticación
 │   │   │   ├── 📁 guard/  # Guards para proteger rutas
@@ -146,10 +157,9 @@ Este proyecto ha sido generado con [Angular CLI](https://github.com/angular/angu
 📄 tsconfig.app.json  # Configuración de TypeScript específica para la aplicación
 📄 tsconfig.json  # Configuración global de TypeScript
 📄 tsconfig.spec.json  # Configuración TypeScript para pruebas unitarias
+```
 
-</code></pre>
-
-## 📦 Instalación de Paquetes
+## Instalación de Paquetes
 
 Ejecuta el siguiente comando para instalar todos los módulos de Node de este proyecto:
 
@@ -157,7 +167,7 @@ Ejecuta el siguiente comando para instalar todos los módulos de Node de este pr
 npm install
 ```
 
-## 🌍 Inicio del Servidor de Desarrollo
+## Inicio del Servidor de Desarrollo
 
 Ejecuta el siguiente comando para iniciar el servidor de desarrollo:
 
@@ -165,9 +175,9 @@ Ejecuta el siguiente comando para iniciar el servidor de desarrollo:
 ng serve
 ```
 
-🔗 Accede a la aplicación en [`http://localhost:4200/`](http://localhost:4200/). La aplicación se recargará automáticamente si realizas cambios en los archivos fuente.
+## 🔗 Accede a la aplicación
 
-***
+en [`http://localhost:4200/`](http://localhost:4200/). La aplicación se recargará automáticamente si realizas cambios en los archivos fuente.
 
 ## ⚡ Generación de Código
 
@@ -183,9 +193,9 @@ También puedes generar otros elementos:
 ng generate directive|pipe|service|class|guard|interface|enum|module
 ```
 
-***
+---
 
-## 🏗️ Compilación
+## Compilación
 
 Para compilar el proyecto, usa:
 
@@ -193,9 +203,7 @@ Para compilar el proyecto, usa:
 ng build
 ```
 
-## 🧪 Pruebas en Angular
-
-### 📌 Pruebas Unitarias
+### Pruebas Unitarias
 
 Para ejecutar las pruebas unitarias en el proyecto, usa el siguiente comando:
 
@@ -204,6 +212,62 @@ ng test
 ```
 
 Este comando ejecutará las pruebas utilizando **Karma** como test runner y **Jasmine** como framework de pruebas.
+
+### 🛠 Código del Test - listado-usuarios.component.spec.ts
+
+```typescript
+import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { ListadoUsuariosComponent } from "./listado-usuarios.component";
+import { UserService } from "../../service/usuarios.service";
+import { HttpClientTestingModule } from "@angular/common/http/testing";
+import { lastValueFrom } from "rxjs";
+
+jasmine.DEFAULT_TIMEOUT_INTERVAL = 30000; // ⏳ Aumenta timeout a 30 segundos
+
+describe("ListadoUsuariosComponent - Prueba con API Real", () => {
+  let component: ListadoUsuariosComponent;
+  let fixture: ComponentFixture<ListadoUsuariosComponent>;
+  let userService: UserService;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [
+        ListadoUsuariosComponent, // ✅ Se importa como standalone
+        HttpClientTestingModule, // ✅ Permite pruebas HTTP
+      ],
+      providers: [UserService],
+    }).compileComponents();
+
+    fixture = TestBed.createComponent(ListadoUsuariosComponent);
+    component = fixture.componentInstance;
+    userService = TestBed.inject(UserService);
+  });
+
+  it("debería obtener usuarios reales desde la API", async () => {
+    const startTime = performance.now();
+
+    try {
+      const usuarios = await lastValueFrom(userService.getUsers()); // ✅ Manejo correcto de observables
+
+      const endTime = performance.now();
+      const responseTime = (endTime - startTime).toFixed(2);
+
+      console.log("📄 Usuarios recibidos:", usuarios);
+      console.log("⏳ Tiempo de respuesta:", responseTime, "ms");
+
+      expect(usuarios).withContext("⚠️ La API devolvió una respuesta vacía o nula").toBeTruthy(); // ✅ Verifica que la API devolvió algo
+
+      expect(Array.isArray(usuarios)).withContext("⚠️ La API no devolvió un array, revisa el formato de respuesta").toBeTrue(); // ✅ Confirma que sea un array
+
+      expect(usuarios.length).withContext(`⚠️ La API devolvió un array vacío. Tiempo de respuesta: ${responseTime}ms`).toBeGreaterThan(0); // ✅ Confirma que haya datos
+
+      console.log("✅ Prueba de API superada con éxito. Datos recibidos correctamente.");
+    } catch (error) {
+      fail(`❌ Error al obtener usuarios: ${error}`);
+    }
+  });
+});
+```
 
 #### ✅ Objetivo de las pruebas unitarias
 
@@ -222,7 +286,7 @@ Las pruebas unitarias pueden clasificarse en diferentes categorías según su pr
 - ✅ **Pruebas de servicios:** Evalúan la lógica de negocio y la comunicación con APIs externas.
 - ✅ **Pruebas de eventos y directivas:** Confirman el comportamiento de interacciones en la UI.
 
-***
+---
 
 ### 🏆 Pruebas End-to-End (E2E)
 
@@ -242,6 +306,6 @@ Las pruebas E2E validan el flujo completo de la aplicación simulando la interac
 - 🔹 **Detección de errores en la integración entre componentes y servicios.**
 - 🔹 **Garantía de estabilidad en la navegación y experiencia del usuario.**
 
-***
+---
 
 📖 **Recomendación:** Mantén un equilibrio entre **pruebas unitarias** y **pruebas E2E** para garantizar la calidad del código sin afectar la velocidad de desarrollo. 🚀

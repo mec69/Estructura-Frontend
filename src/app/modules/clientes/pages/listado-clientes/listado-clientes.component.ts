@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IClientes } from '../../interfaces/clientes.interface';
+import { IClientes } from '../../interface/clientes.interface';
 import { ClientesService } from '../../services/clientes.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';

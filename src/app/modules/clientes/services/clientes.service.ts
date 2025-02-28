@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { IClientes } from '../interfaces/clientes.interface';
+import { IClientes } from '../interface/clientes.interface';
 import { Envsystem } from '../../../core/model/env.model';
 /**
  * Servicio para gestionar las operaciones relacionadas con los clientes.

@@ -1,1 +1,48 @@
-<p>listado-usuarios works!</p>
+<header>
+    <h1>Listado de Usuarios</h1>
+</header>
+<div class="container">
+    <aside class="sidebar">
+        <nav>
+            <ul>
+                <li><a href="#">Inicio</a></li>
+                <li><a href="#">Usuarios</a></li>
+                <li><a href="#">Configuración</a></li>
+                <li><a href="#">Cerrar Sesión</a></li>
+            </ul>
+        </nav>
+    </aside>
+    <main class="content">
+
+        <h2>Lista de Usuarios</h2>
+        <button (click)="cargarUsuarios()">Cargar Usuarios</button>
+        <ul id="user-list">
+            <li *ngFor="let user of usuarios">{{ user.name }}</li>
+        </ul>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Email</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Juan Pérez</td>
+                    <td>juanexample.com</td>
+                    <td><button class="btn">Editar</button> <button class="btn delete">Eliminar</button></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>María López</td>
+                    <td>mariaexample.com</td>
+                    <td><button class="btn">Editar</button> <button class="btn delete">Eliminar</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </main>
+</div>
