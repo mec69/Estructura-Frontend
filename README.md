@@ -82,7 +82,7 @@ Este proyecto ha sido generado con [Angular CLI](https://github.com/angular/angu
 │   │   │   │   │   ├── 📄 registrate.interface.spec.ts
 │   │   │   │   │   ├── 📄 registrate.interface.ts
 │   │   │   ├── 📁 service/  # Servicios para autenticación
-│   │   │   │   │   ├── 📄 inniciasesion.service.ts
+│   │   │   │   │   ├── 📄 inicia-sesion.service.ts
 │   │   │   │   │   ├── 📄 registrate.service.ts
 │   │   ├── 📁 clientes/  # Módulo para gestión de clientes
 │   │   │   ├── 📁 interface/  # Interfaces relacionadas con clientes
@@ -118,8 +118,8 @@ Este proyecto ha sido generado con [Angular CLI](https://github.com/angular/angu
 │   │   │   │   ├── 📄 usuarios.service.ts
 │   ├── 📁 shared/  # Componentes compartidos en toda la aplicación
 │   │   ├── 📁 footer/  # Componente del pie de página
-<strong>│   │   │   ├── 📄 footer.component.css
-</strong>│   │   │   ├── 📄 footer.component.html
+│   │   │   ├── 📄 footer.component.css
+│   │   │   ├── 📄 footer.component.html
 │   │   │   ├── 📄 footer.component.spec.ts
 │   │   │   ├── 📄 footer.component.ts
 │   │   ├── 📁 header/  # Componente de la cabecera
@@ -463,9 +463,9 @@ npx playwright test
 
 Las pruebas E2E validan el flujo completo de la aplicación simulando la interacción del usuario. Sus ventajas incluyen:
 
-- 🔹 **Simulación de escenarios reales de uso.**
-- 🔹 **Detección de errores en la integración entre componentes y servicios.**
-- 🔹 **Garantía de estabilidad en la navegación y experiencia del usuario.**
+* 🔹 **Simulación de escenarios reales de uso.**
+* 🔹 **Detección de errores en la integración entre componentes y servicios.**
+* 🔹 **Garantía de estabilidad en la navegación y experiencia del usuario.**
 
 ---
 
