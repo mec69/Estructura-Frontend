@@ -13,13 +13,7 @@
         </nav>
     </aside>
     <main class="content">
-
-        <h2>Lista de Usuarios</h2>
-        <button (click)="cargarUsuarios()">Cargar Usuarios</button>
-        <ul id="user-list">
-            <li *ngFor="let user of usuarios">{{ user.name }}</li>
-        </ul>
-
+        <app-agregar-usuarios (usuarioAgregado)="agregarUsuario($event)"></app-agregar-usuarios>
         <table>
             <thead>
                 <tr>
@@ -30,19 +24,17 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Juan Pérez</td>
-                    <td>juanexample.com</td>
-                    <td><button class="btn">Editar</button> <button class="btn delete">Eliminar</button></td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>María López</td>
-                    <td>mariaexample.com</td>
-                    <td><button class="btn">Editar</button> <button class="btn delete">Eliminar</button></td>
+                <tr *ngFor="let user of usuarios; let i = index">
+                    <td>{{ i + 1 }}</td>
+                    <td>{{ user.name }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>
+                        <button class="btn" (click)="editarUsuario(user)">Editar</button>
+                        <button class="btn delete" (click)="eliminarUsuario(i)">Eliminar</button>
+                    </td>
                 </tr>
             </tbody>
         </table>
+
     </main>
 </div>
