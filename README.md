@@ -1,17 +1,15 @@
-# Proyecto Angular - Estructura y Guía de Desarrollo
-
-Este proyecto ha sido generado con [Angular CLI](https://github.com/angular/angular-cli) versión **18.2.4**.
+## Proyecto Angular - Estructura y Guía de Desarrollo
 
 ## Tabla de Contenidos
 
-- [Estructura de Directorios y Archivos](#estructura-de-directorios-y-archivos)
-- [Instalación de Paquetes](#instalación-de-paquetes)
-- [Inicio del Servidor de Desarrollo](#inicio-del-servidor-de-desarrollo)
-- [Compilación](#compilación)
-- [Pruebas Unitarias](#pruebas-unitarias)
-- [Configuración del entorno E2E](#Configuración-del-entorno-e2e)
+- [Estructura de Directorios y Archivos](./#estructura-de-directorios-y-archivos)
+- [Instalación de Paquetes](./#instalación-de-paquetes)
+- [Inicio del Servidor de Desarrollo](./#inicio-del-servidor-de-desarrollo)
+- [Compilación](./#compilación)
+- [Pruebas Unitarias](./#pruebas-unitarias)
+- [Configuración del entorno E2E](./#Configuración-del-entorno-e2e)
 
-## Estructura de Directorios y Archivos
+### Estructura de Directorios y Archivos
 
 ```scss
 📁 src/  # Código fuente de la aplicación
@@ -156,7 +154,7 @@ Este proyecto ha sido generado con [Angular CLI](https://github.com/angular/angu
 📄 tsconfig.spec.json  # Configuración TypeScript para pruebas unitarias
 ```
 
-## Instalación de Paquetes
+### Instalación de Paquetes
 
 Ejecuta el siguiente comando para instalar todos los módulos de Node de este proyecto:
 
@@ -164,7 +162,7 @@ Ejecuta el siguiente comando para instalar todos los módulos de Node de este pr
 npm install
 ```
 
-## Inicio del Servidor de Desarrollo
+### Inicio del Servidor de Desarrollo
 
 Ejecuta el siguiente comando para iniciar el servidor de desarrollo:
 
@@ -172,11 +170,11 @@ Ejecuta el siguiente comando para iniciar el servidor de desarrollo:
 ng serve
 ```
 
-## 🔗 Accede a la aplicación
+### 🔗 Accede a la aplicación
 
 en [`http://localhost:4200/`](http://localhost:4200/). La aplicación se recargará automáticamente si realizas cambios en los archivos fuente.
 
-## ⚡ Generación de Código
+### ⚡ Generación de Código
 
 Para generar un nuevo componente, ejecuta:
 
@@ -190,7 +188,15 @@ También puedes generar otros elementos:
 ng generate directive|pipe|service|class|guard|interface|enum|module
 ```
 
+<<<<<<< HEAD
+
 ## Compilación
+
+=======
+
+### Compilación
+
+> > > > > > > 3df5a2f2b1374c8621d853560da02151c845acad
 
 Para compilar el proyecto, usa:
 
@@ -198,7 +204,7 @@ Para compilar el proyecto, usa:
 ng build
 ```
 
-### Pruebas Unitarias
+#### Pruebas Unitarias
 
 Para ejecutar las pruebas unitarias en el proyecto, usa el siguiente comando:
 
@@ -206,7 +212,7 @@ Para ejecutar las pruebas unitarias en el proyecto, usa el siguiente comando:
 ng test
 ```
 
-## 1️⃣ Configurar el `usuarios.service.ts`
+### 1️⃣ Configurar el `usuarios.service.ts`
 
 Este servicio lista los usuarios y se usará en el test.
 
@@ -229,7 +235,7 @@ export class UsuariosService {
 }
 ```
 
-## 2️⃣ Componente `usuarios.component.ts`
+### 2️⃣ Componente `usuarios.component.ts`
 
 Este componente usa `UsuariosService` para listar usuarios.
 
@@ -255,7 +261,7 @@ export class UsuariosComponent implements OnInit {
 }
 ```
 
-## 3️⃣ Test `usuarios.component.spec.ts`
+### 3️⃣ Test `usuarios.component.spec.ts`
 
 Para probar el componente, usamos `HttpTestingController` para simular la API.
 
@@ -313,7 +319,7 @@ describe("UsuariosComponent", () => {
 });
 ```
 
-## 4️⃣ Ejecutar las Pruebas
+### 4️⃣ Ejecutar las Pruebas
 
 Para correr los tests, usa el siguiente comando en la terminal:
 
@@ -321,22 +327,29 @@ Para correr los tests, usa el siguiente comando en la terminal:
 ng test
 ```
 
-## 📌 Explicación
+### 📌 Explicación
 
-✅ Se configura el módulo de prueba con `HttpClientTestingModule` para mockear peticiones HTTP.
-✅ Se inyecta `HttpTestingController` para interceptar y simular respuestas HTTP.
-✅ Se prueba que el componente se cree correctamente.
-✅ Se prueba que `listarUsuarios()` obtenga los datos y los asigne correctamente al array `usuarios`.
-✅ Se usa `expectOne()` para verificar que solo haya una petición HTTP con `GET`.
-✅ Se usa `flush()` para devolver los datos simulados a la prueba.
+- ✅ Se configura el módulo de prueba con `HttpClientTestingModule` para mockear peticiones HTTP.&#x20;
+- ✅ Se inyecta `HttpTestingController` para interceptar y simular respuestas HTTP. &#x20;
+- ✅ Se prueba que el componente se cree correctamente.&#x20;
+- ✅ Se prueba que `listarUsuarios()` obtenga los datos y los asigne correctamente al array `usuarios`.&#x20;
+- ✅ Se usa `expectOne()` para verificar que solo haya una petición HTTP con `GET`.&#x20;
+- ✅ Se usa `flush()` para devolver los datos simulados a la prueba.
+- ✅ Con esta prueba, aseguramos que el componente `UsuariosComponent` obtiene y muestra correctamente la lista de usuarios. 🚀
 
+<<<<<<< HEAD
 ✅ Con esta prueba, aseguramos que el componente `UsuariosComponent` obtiene y muestra correctamente la lista de usuarios. 🚀
 
-
 # Configuración del entorno E2E
-Desde Angular 17, se recomienda usar Playwright para pruebas E2E.
 
-## 1. Instalación de Playwright
+=======
+
+## Configuración del entorno E2E
+
+> > > > > > > 3df5a2f2b1374c8621d853560da02151c845acad
+> > > > > > > Desde Angular 17, se recomienda usar Playwright para pruebas E2E.
+
+### 1. Instalación de Playwright
 
 Ejecuta el siguiente comando para agregar Playwright a tu proyecto:
 
@@ -346,10 +359,17 @@ ng add @angular/playwright
 
 Luego, crea el archivo de prueba en `e2e/src/app.e2e-spec.ts`.
 
+<<<<<<< HEAD
 
 ## 2. Crear la prueba E2E para el servicio de usuarios
 
-### Servicio `UsuarioService`
+=======
+
+### 2. Crear la prueba E2E para el servicio de usuarios
+
+> > > > > > > 3df5a2f2b1374c8621d853560da02151c845acad
+
+#### Servicio `UsuarioService`
 
 Archivo: `usuario.service.ts`
 
@@ -372,7 +392,7 @@ export class UsuarioService {
 }
 ```
 
-### Componente `UsuariosComponent`
+#### Componente `UsuariosComponent`
 
 Archivo: `usuarios.component.ts`
 
@@ -404,7 +424,7 @@ export class UsuariosComponent implements OnInit {
 
 ---
 
-## 3. Crear la prueba E2E
+### 3. Crear la prueba E2E
 
 Archivo: `e2e/src/app.e2e-spec.ts`
 
@@ -424,8 +444,17 @@ test("Debe listar usuarios en la página", async ({ page }) => {
 });
 ```
 
----
+## <<<<<<< HEAD
+
 ## 4. Ejecutar las pruebas
+
+=======
+
+---
+
+### 4. Ejecutar las pruebas
+
+> > > > > > > 3df5a2f2b1374c8621d853560da02151c845acad
 
 Inicia la aplicación en modo desarrollo:
 
@@ -441,7 +470,7 @@ npx playwright test
 
 ---
 
-## 5. Explicación del test
+### 5. Explicación del test
 
 - ✅ Abre la página `/usuarios`.
 - ✅ Espera que se carguen los usuarios con `waitForSelector('li')`.
@@ -450,7 +479,7 @@ npx playwright test
 
 ---
 
-#### 🚀 Beneficios de las pruebas E2E
+**🚀 Beneficios de las pruebas E2E**
 
 Las pruebas E2E validan el flujo completo de la aplicación simulando la interacción del usuario. Sus ventajas incluyen:
 
