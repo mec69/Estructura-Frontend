@@ -1,31 +1,175 @@
+// import { test, expect } from '@playwright/test';
+
+// test('Debe cargar y mostrar la lista de usuarios en la tabla', async ({ page }) => {
+//     console.log('\n-------------------------------');
+//     console.log('🔍 Iniciando prueba: Listado de usuarios');
+//     console.log('-------------------------------\n');
+
+//     // 📌 Ir a la página de listado de usuarios
+//     await page.goto('http://localhost:4200/listado-usuarios');
+
+//     // 📌 Esperar a que la tabla se cargue
+//     const tablaUsuarios = page.locator('table tbody tr');
+//     await tablaUsuarios.first().waitFor(); // Espera a que haya al menos un usuario
+
+//     // Obtener el número total de usuarios en la tabla
+//     const totalUsuarios = await tablaUsuarios.count();
+//     console.log(`📌 Número total de usuarios encontrados: ${totalUsuarios}\n`);
+
+//     // 📌 Recorrer y listar cada usuario en una sola línea
+//     console.log('👥 Lista de usuarios:');
+//     for (let i = 0; i < totalUsuarios; i++) {
+//         const usuarioFila = tablaUsuarios.nth(i);
+//         const nombre = await usuarioFila.locator('td:nth-child(2)').innerText();
+//         const email = await usuarioFila.locator('td:nth-child(3)').innerText();
+
+//         console.log(`   🔹 Usuario ${i + 1}: ${nombre} | ✉️ ${email}`);
+//     }
+//     console.log('');
+
+//     // Verificar que hay usuarios cargados
+//     expect(totalUsuarios).toBeGreaterThan(0);
+
+//     // 📌 Verificar que la primera fila tiene datos correctos (Nombre, Email, Teléfono)
+//     const primerUsuarioNombre = await tablaUsuarios.first().locator('td:nth-child(2)').textContent();
+//     const primerUsuarioEmail = await tablaUsuarios.first().locator('td:nth-child(3)').textContent();
+//     const primerUsuarioUsuario = await tablaUsuarios.first().locator('td:nth-child(4)').textContent();
+
+//     expect(primerUsuarioNombre).not.toBeNull();
+//     expect(primerUsuarioEmail).not.toBeNull();
+//     expect(primerUsuarioUsuario).not.toBeNull();
+
+//     console.log('\n✅ Datos del primer usuario:');
+//     console.log(`   🏷️ Nombre: ${primerUsuarioNombre} | ✉️ Email: ${primerUsuarioEmail} | 🆔 Usuario: ${primerUsuarioUsuario}\n`);
+
+//     // 📌 Capturar evidencia visual
+//     await page.screenshot({ path: 'evidencia-listado-usuarios.png', fullPage: true });
+
+//     console.log('📸 Captura de pantalla guardada: evidencia-listado-usuarios.png\n');
+//     console.log('✅ Prueba completada correctamente\n');
+// });
+
+// test('Debe eliminar un usuario correctamente', async ({ page }) => {
+//     console.log('\n-------------------------------');
+//     console.log('🗑️ Iniciando prueba: Eliminación de usuario');
+//     console.log('-------------------------------\n');
+
+//     // 📌 Ir a la página de listado de usuarios
+//     await page.goto('http://localhost:4200/listado-usuarios');
+
+//     // 📌 Esperar a que la tabla se cargue
+//     await page.waitForSelector('table tbody tr');
+
+//     // 📌 Contar usuarios antes de eliminar
+//     const usuariosAntes = await page.locator('table tbody tr').count();
+//     console.log(`📌 Usuarios antes de eliminar: ${usuariosAntes}\n`);
+//     expect(usuariosAntes).toBeGreaterThan(0);
+
+//     // 📌 Hacer clic en el botón "Eliminar" del primer usuario
+//     await page.locator('table tbody tr:first-child .delete').click();
+
+//     // 📌 Esperar a que la tabla se actualice
+//     await page.waitForSelector('table tbody tr', { state: 'attached' });
+
+//     // 📌 Contar usuarios después de eliminar
+//     const usuariosDespues = await page.locator('table tbody tr').count();
+//     console.log(`📌 Usuarios después de eliminar: ${usuariosDespues}\n`);
+//     expect(usuariosDespues).toBeLessThan(usuariosAntes);
+
+//     // 📌 Capturar evidencia visual
+//     await page.screenshot({ path: 'evidencia-eliminar-usuario.png', fullPage: true });
+
+//     console.log('📸 Captura de pantalla guardada: evidencia-eliminar-usuario.png\n');
+//     console.log('✅ Prueba completada correctamente\n');
+// });
+
+
 import { test, expect } from '@playwright/test';
 
-test('Debe cargar y mostrar la lista de usuarios', async ({ page }) => {
-    // 📌 Ir a la página de listado de usuarios
+test('Debe cargar y mostrar la lista de usuarios en la tabla', async ({ page }) => {
+    console.log('\n-------------------------------');
+    console.log('🔍 Iniciando prueba: Listado de usuarios');
+    console.log('-------------------------------\n');
+
+    // 📌 1. Navegar a la página de usuarios
     await page.goto('http://localhost:4200/listado-usuarios');
 
-    // 📌 Esperar a que el botón de cargar usuarios esté visible y hacer clic en él
-    const boton = page.locator('button', { hasText: 'Cargar Usuarios' });
-    await expect(boton).toBeVisible();
-    await boton.click();
+    // 📌 2. Esperar a que la tabla de usuarios esté presente
+    const tablaUsuarios = page.locator('table tbody tr');
+    await tablaUsuarios.first().waitFor(); // Se asegura de que haya al menos un usuario cargado
 
-    // 📌 Esperar que se carguen los usuarios en la lista
-    const listaUsuarios = page.locator('#user-list li');
-    await listaUsuarios.first().waitFor(); // Espera a que al menos un usuario cargue
+    // 📌 3. Contar el número total de usuarios en la tabla
+    const totalUsuarios = await tablaUsuarios.count();
+    console.log(`📌 Número total de usuarios encontrados: ${totalUsuarios}\n`);
 
-    // 📌 Verificar que la lista de usuarios no esté vacía
-    const userCount = await listaUsuarios.count();
-    expect(userCount).toBeGreaterThan(0);
+    // 📌 4. Listar usuarios en la consola con nombre y correo electrónico
+    console.log('👥 Lista de usuarios:');
+    for (let i = 0; i < totalUsuarios; i++) {
+        const usuarioFila = tablaUsuarios.nth(i);
+        const nombre = await usuarioFila.locator('td:nth-child(2)').innerText();
+        const email = await usuarioFila.locator('td:nth-child(3)').innerText();
+        console.log(`   🔹 Usuario ${i + 1}: ${nombre} | ✉️ ${email}`);
+    }
+    console.log('');
 
-    // 📌 Verificar que el primer usuario tiene un nombre válido
-    const firstUser = await listaUsuarios.first().textContent();
-    expect(firstUser).not.toBeNull();
-    expect(firstUser?.trim().length).toBeGreaterThan(0);
+    // 📌 5. Verificar que la tabla tiene usuarios
+    expect(totalUsuarios).toBeGreaterThan(0);
 
-    // 📌 Registrar usuarios cargados en consola
-    const usuarios = await listaUsuarios.allTextContents();
-    console.log('Usuarios cargados:', usuarios);
+    // 📌 6. Validar que el primer usuario tenga datos correctos
+    const primerUsuarioNombre = await tablaUsuarios.first().locator('td:nth-child(2)').textContent();
+    const primerUsuarioEmail = await tablaUsuarios.first().locator('td:nth-child(3)').textContent();
+    const primerUsuarioUsuario = await tablaUsuarios.first().locator('td:nth-child(4)').textContent();
 
-    // 📌 Capturar una pantalla en caso de fallo
+    expect(primerUsuarioNombre).not.toBeNull();
+    expect(primerUsuarioEmail).not.toBeNull();
+    expect(primerUsuarioUsuario).not.toBeNull();
+
+    console.log('\n✅ Datos del primer usuario:');
+    console.log(`   🏷️ Nombre: ${primerUsuarioNombre} | ✉️ Email: ${primerUsuarioEmail} | 🆔 Usuario: ${primerUsuarioUsuario}\n`);
+
+    // 📌 7. Capturar evidencia visual de la tabla
     await page.screenshot({ path: 'evidencia-listado-usuarios.png', fullPage: true });
+    console.log('📸 Captura de pantalla guardada: evidencia-listado-usuarios.png\n');
+
+    console.log('✅ Prueba completada correctamente\n');
+});
+
+
+
+
+test('Debe eliminar un usuario correctamente', async ({ page }) => {
+    console.log('\n-------------------------------');
+    console.log('🗑️ Iniciando prueba: Eliminación de usuario');
+    console.log('-------------------------------\n');
+
+    // 📌 1. Navegar a la página de listado de usuarios
+    await page.goto('http://localhost:4200/listado-usuarios');
+
+    // 📌 2. Esperar a que la tabla de usuarios cargue
+    await page.waitForSelector('table tbody tr');
+
+    // 📌 3. Contar el número de usuarios antes de eliminar
+    const usuariosAntes = await page.locator('table tbody tr').count();
+    console.log(`📌 Usuarios antes de eliminar: ${usuariosAntes}\n`);
+    expect(usuariosAntes).toBeGreaterThan(0);
+
+    // 📌 4. Hacer clic en el botón "Eliminar" del primer usuario
+    await page.locator('table tbody tr:first-child .delete').click();
+
+    // 📌 5. Esperar a que la tabla se actualice
+    await page.waitForSelector('table tbody tr', { state: 'attached' });
+
+    // 📌 6. Contar el número de usuarios después de eliminar
+    const usuariosDespues = await page.locator('table tbody tr').count();
+    console.log(`📌 Usuarios después de eliminar: ${usuariosDespues}\n`);
+    expect(usuariosDespues).toBeLessThan(usuariosAntes);
+
+    // 📌 7. Capturar evidencia visual de la tabla antes y después de eliminar
+    await page.screenshot({ path: 'evidencia-listado-usuarios.png', fullPage: true });
+    console.log('📸 Captura de pantalla guardada: evidencia-listado-usuarios.png\n');
+
+    await page.screenshot({ path: 'evidencia-eliminar-usuario.png', fullPage: true });
+    console.log('📸 Captura de pantalla guardada: evidencia-eliminar-usuario.png\n');
+
+    console.log('✅ Prueba completada correctamente\n');
 });

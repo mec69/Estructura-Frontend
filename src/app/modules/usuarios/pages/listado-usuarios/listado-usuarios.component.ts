@@ -14,13 +14,20 @@ import { AgregarUsuariosComponent } from '../agregar-usuarios/agregar-usuarios.c
 export class ListadoUsuariosComponent {
 
   usuarios: any[] = [];
+
   eliminarUsuario(index: number) {
+    // 📌 Eliminar del array en memoria
     this.usuarios.splice(index, 1);
+
+    // 📌 Actualizar el localStorage después de eliminar
+    localStorage.setItem('usuarios', JSON.stringify(this.usuarios));
   }
+
 
   editarUsuario(user: any) {
     alert(`Editar usuario: ${user.name}`);
   }
+
   constructor(private userService: UserService) { }
 
   ngOnInit() {
@@ -28,6 +35,10 @@ export class ListadoUsuariosComponent {
   }
 
   cargarUsuarios() {
+    const usuarios = JSON.parse(localStorage.getItem('usuarios') || '[]');
+    console.log('Usuarios almacenados:', usuarios);
+
+
     this.userService.getUsers().subscribe({
       next: (data) => {
         this.usuarios = data ?? []; // ✅ Evita que `usuarios` sea `undefined`

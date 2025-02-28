@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { IClientes } from '../../interface/clientes.interface';
 import { ClientesService } from '../../services/clientes.service';
 import { CommonModule } from '@angular/common';
@@ -20,7 +20,13 @@ import { FormsModule } from '@angular/forms';
 })
 export class ListadoClientesComponent {
 
+  @Input() name: string = 'Mundo';
 
+  getGreeting(): string {
+    return `Hola, ${this.name}!`;
+  }
+
+  
   clientes: IClientes[] = [];
 
   constructor(private clientesService: ClientesService) { }

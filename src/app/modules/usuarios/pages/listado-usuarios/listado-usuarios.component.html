@@ -1,6 +1,3 @@
-<header>
-    <h1>Listado de Usuarios</h1>
-</header>
 <div class="container">
     <aside class="sidebar">
         <nav>
@@ -12,29 +9,32 @@
             </ul>
         </nav>
     </aside>
+
     <main class="content">
         <app-agregar-usuarios (usuarioAgregado)="agregarUsuario($event)"></app-agregar-usuarios>
+        <br>
         <table>
             <thead>
                 <tr>
                     <th>ID</th>
                     <th>Nombre</th>
+                    <th>Usuario</th>
                     <th>Email</th>
-                    <th>Acciones</th>
+                    <th class="tc">Acciones</th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let user of usuarios; let i = index">
                     <td>{{ i + 1 }}</td>
                     <td>{{ user.name }}</td>
+                    <td>{{ user.username }}</td>
                     <td>{{ user.email }}</td>
-                    <td>
+                    <td class="tc">
                         <button class="btn" (click)="editarUsuario(user)">Editar</button>
                         <button class="btn delete" (click)="eliminarUsuario(i)">Eliminar</button>
                     </td>
                 </tr>
             </tbody>
         </table>
-
     </main>
 </div>

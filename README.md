@@ -4,12 +4,12 @@
 
 ### Tabla de Contenidos
 
-* [Estructura de Directorios y Archivos](./#estructura-de-directorios-y-archivos)
-* [Instalación de Paquetes](./#instalación-de-paquetes)
-* [Inicio del Servidor de Desarrollo](./#inicio-del-servidor-de-desarrollo)
-* [Compilación](./#compilación)
-* [Pruebas Unitarias](./#pruebas-unitarias)
-* [Configuración del entorno E2E](./#Configuración-del-entorno-e2e)
+- [Estructura de Directorios y Archivos](./#estructura-de-directorios-y-archivos)
+- [Instalación de Paquetes](./#instalación-de-paquetes)
+- [Inicio del Servidor de Desarrollo](./#inicio-del-servidor-de-desarrollo)
+- [Compilación](./#compilación)
+- [Pruebas Unitarias](./#pruebas-unitarias)
+- [Configuración del entorno E2E](./#Configuración-del-entorno-e2e)
 
 #### Estructura de Directorios y Archivos
 
@@ -154,6 +154,7 @@
 📄 tsconfig.app.json  # Configuración de TypeScript específica para la aplicación
 📄 tsconfig.json  # Configuración global de TypeScript
 📄 tsconfig.spec.json  # Configuración TypeScript para pruebas unitarias
+
 ```
 
 #### Instalación de Paquetes
@@ -200,115 +201,89 @@ ng build
 
 **Pruebas Unitarias**
 
-Para ejecutar las pruebas unitarias en el proyecto, usa el siguiente comando:
-
 ```sh
 ng test
 ```
-
-#### 1️⃣ Configurar el `usuarios.service.ts`
-
-Este servicio lista los usuarios y se usará en el test.
-
-```typescript
-import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs";
-
-@Injectable({
-  providedIn: "root",
-})
-export class UsuariosService {
-  private apiUrl = "https://jsonplaceholder.typicode.com/users";
-
-  constructor(private http: HttpClient) {}
-
-  listarUsuarios(): Observable<any[]> {
-    return this.http.get<any[]>(this.apiUrl);
-  }
-}
-```
+ejecuta las pruebas unitarias en un proyecto Angular utilizando Karma como corredor de pruebas. 
+Permite verificar el funcionamiento de los componentes, servicios y lógica del código de manera automatizada.
 
 #### 2️⃣ Componente `usuarios.component.ts`
 
 Este componente usa `UsuariosService` para listar usuarios.
 
 ```typescript
-import { Component, OnInit } from "@angular/core";
-import { UsuariosService } from "../services/usuarios.service";
+import { Component, Input } from "@angular/core";
+import { IClientes } from "../../interface/clientes.interface";
+import { ClientesService } from "../../services/clientes.service";
+import { CommonModule } from "@angular/common";
+import { FormsModule } from "@angular/forms";
 
 @Component({
-  selector: "app-usuarios",
-  templateUrl: "./usuarios.component.html",
-  styleUrls: ["./usuarios.component.scss"],
+  selector: "app-listado-clientes",
+  standalone: true,
+  imports: [CommonModule, FormsModule],
+  providers: [ClientesService], // Proporciona el servicio
+  templateUrl: "./listado-clientes.component.html",
+  styleUrl: "./listado-clientes.component.css",
 })
-export class UsuariosComponent implements OnInit {
-  usuarios: any[] = [];
+export class ListadoClientesComponent {
+  @Input() name: string = "Mundo";
 
-  constructor(private usuariosService: UsuariosService) {}
-
-  ngOnInit() {
-    this.usuariosService.listarUsuarios().subscribe((data) => {
-      this.usuarios = data;
-    });
+  getGreeting(): string {
+    return `Hola, ${this.name}!`;
   }
+
+  clientes: IClientes[] = [];
+
+  constructor(private clientesService: ClientesService) {}
+
+  ngOnInit(): void {}
 }
 ```
 
-#### 3️⃣ Test `usuarios.component.spec.ts`
+#### 3️⃣ Test `Clientes.component.spec.ts`
 
 Para probar el componente, usamos `HttpTestingController` para simular la API.
 
 ```typescript
 import { ComponentFixture, TestBed } from "@angular/core/testing";
-import { UsuariosComponent } from "./usuarios.component";
-import { UsuariosService } from "../services/usuarios.service";
-import { HttpClientTestingModule, HttpTestingController } from "@angular/common/http/testing";
+import { HttpClientModule } from "@angular/common/http";
+import { ListadoClientesComponent } from "./listado-clientes.component";
 
-describe("UsuariosComponent", () => {
-  let component: UsuariosComponent;
-  let fixture: ComponentFixture<UsuariosComponent>;
-  let usuariosService: UsuariosService;
-  let httpMock: HttpTestingController;
+describe("ListadoClientesComponent", () => {
+  let component: ListadoClientesComponent;
+  let fixture: ComponentFixture<ListadoClientesComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [UsuariosComponent],
-      imports: [HttpClientTestingModule],
-      providers: [UsuariosService],
+      imports: [
+        HttpClientModule, // Importamos el módulo HTTP
+        ListadoClientesComponent, // ✅ Importamos el componente standalone aquí
+      ],
     }).compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(UsuariosComponent);
+    fixture = TestBed.createComponent(ListadoClientesComponent);
     component = fixture.componentInstance;
-    usuariosService = TestBed.inject(UsuariosService);
-    httpMock = TestBed.inject(HttpTestingController);
     fixture.detectChanges();
   });
 
-  afterEach(() => {
-    httpMock.verify();
-  });
-
-  it("debería crear el componente", () => {
+  it("Debe crearse el componente", () => {
     expect(component).toBeTruthy();
+    console.log("%c✅ Prueba exitosa: El componente se creó correctamente", "color: green; font-weight: bold;");
+  });
+  it("Debe devolver el saludo por defecto", () => {
+    const resultado = component.getGreeting();
+    expect(resultado).toBe("Hola, Mundo!");
+    console.log("%c✅ Prueba exitosa: getGreeting() devuelve el saludo por defecto", "color: green; font-weight: bold;");
   });
 
-  it("debería listar usuarios correctamente", () => {
-    const mockUsuarios = [
-      { id: 1, name: "Juan" },
-      { id: 2, name: "María" },
-    ];
-
-    component.ngOnInit();
-
-    const req = httpMock.expectOne("https://jsonplaceholder.typicode.com/users");
-    expect(req.request.method).toBe("GET");
-    req.flush(mockUsuarios);
-
-    expect(component.usuarios.length).toBe(2);
-    expect(component.usuarios).toEqual(mockUsuarios);
+  it("Debe devolver el saludo con un nombre específico", () => {
+    component.name = "Carlos";
+    const resultado = component.getGreeting();
+    expect(resultado).toBe("Hola, Carlos!");
+    console.log("%c✅ Prueba exitosa: getGreeting() devuelve el saludo con un nombre", "color: green; font-weight: bold;");
   });
 });
 ```
@@ -323,13 +298,13 @@ ng test
 
 #### 📌 Explicación
 
-* ✅ Se configura el módulo de prueba con `HttpClientTestingModule` para mockear peticiones HTTP.
-* ✅ Se inyecta `HttpTestingController` para interceptar y simular respuestas HTTP.
-* ✅ Se prueba que el componente se cree correctamente.
-* ✅ Se prueba que `listarUsuarios()` obtenga los datos y los asigne correctamente al array `usuarios`.
-* ✅ Se usa `expectOne()` para verificar que solo haya una petición HTTP con `GET`.
-* ✅ Se usa `flush()` para devolver los datos simulados a la prueba.
-* ✅ Con esta prueba, aseguramos que el componente `UsuariosComponent` obtiene y muestra correctamente la lista de usuarios. 🚀
+- ✅ Se configura el módulo de prueba con `HttpClientTestingModule` para mockear peticiones HTTP.
+- ✅ Se inyecta `HttpTestingController` para interceptar y simular respuestas HTTP.
+- ✅ Se prueba que el componente se cree correctamente.
+- ✅ Se prueba que `listarUsuarios()` obtenga los datos y los asigne correctamente al array `usuarios`.
+- ✅ Se usa `expectOne()` para verificar que solo haya una petición HTTP con `GET`.
+- ✅ Se usa `flush()` para devolver los datos simulados a la prueba.
+- ✅ Con esta prueba, aseguramos que el componente `UsuariosComponent` obtiene y muestra correctamente la lista de usuarios. 🚀
 
 ## Configuración del entorno E2E
 
@@ -343,7 +318,7 @@ ng add @angular/playwright
 
 Luego, crea el archivo de prueba en `e2e/src/app.e2e-spec.ts`.
 
-***
+---
 
 ### 2. Crear la prueba E2E para el servicio de usuarios
 
@@ -400,7 +375,7 @@ export class UsuariosComponent implements OnInit {
 }
 ```
 
-***
+---
 
 ### 3. Crear la prueba E2E
 
@@ -422,7 +397,7 @@ test("Debe listar usuarios en la página", async ({ page }) => {
 });
 ```
 
-***
+---
 
 ### 4. Ejecutar las pruebas
 
@@ -440,25 +415,25 @@ Luego, ejecuta la prueba E2E con:
 npx playwright test
 ```
 
-***
+---
 
 ### 5. Explicación del test
 
-* ✅ Abre la página `/usuarios`.
-* ✅ Espera que se carguen los usuarios con `waitForSelector('li')`.
-* ✅ Cuenta los elementos `<li>` para verificar que la lista no está vacía.
-* ✅ Verifica que al menos hay 1 usuario cargado con `expect().toBeGreaterThan(0)`.
+- ✅ Abre la página `/usuarios`.
+- ✅ Espera que se carguen los usuarios con `waitForSelector('li')`.
+- ✅ Cuenta los elementos `<li>` para verificar que la lista no está vacía.
+- ✅ Verifica que al menos hay 1 usuario cargado con `expect().toBeGreaterThan(0)`.
 
-***
+---
 
 **🚀 Beneficios de las pruebas E2E**
 
 Las pruebas E2E validan el flujo completo de la aplicación simulando la interacción del usuario. Sus ventajas incluyen:
 
-* 🔹 **Simulación de escenarios reales de uso.**
-* 🔹 **Detección de errores en la integración entre componentes y servicios.**
-* 🔹 **Garantía de estabilidad en la navegación y experiencia del usuario.**
+- 🔹 **Simulación de escenarios reales de uso.**
+- 🔹 **Detección de errores en la integración entre componentes y servicios.**
+- 🔹 **Garantía de estabilidad en la navegación y experiencia del usuario.**
 
-***
+---
 
 📖 **Recomendación:** Mantén un equilibrio entre **pruebas unitarias** y **pruebas E2E** para garantizar la calidad del código sin afectar la velocidad de desarrollo. 🚀
