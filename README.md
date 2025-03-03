@@ -234,13 +234,14 @@ IPedido.interface.ts
 
 #### 📌 Otros archivos
 
-| Tipo       | Ejemplo                   |
-| ---------- | ------------------------- |
-| Directivas | `resaltar.directive.ts`   |
-| Pipes      | `formatear-fecha.pipe.ts` |
-| Guards     | `auth.guard.ts`           |
-| Enums      | `estado-pedido.enum.ts`   |
-| Módulos    | `ventas.module.ts`        |
+| Tipo       | Ejemplo                   | Descripción |
+| ---------- | ------------------------- | ----------- |
+| Directivas | `resaltar.directive.ts`   | Define una directiva personalizada para modificar el comportamiento o apariencia de elementos en la plantilla. |
+| Pipes      | `formatear-fecha.pipe.ts` | Transforma datos en las plantillas, como dar formato a fechas o convertir textos. |
+| Guards     | `auth.guard.ts`           | Controla el acceso a rutas, asegurando que solo usuarios autorizados puedan acceder. |
+| Enums      | `estado-pedido.enum.ts`   | Define un conjunto de valores constantes para representar estados o categorías de forma estructurada. |
+| Módulos    | `ventas.module.ts`        | Agrupa componentes, servicios y otras dependencias relacionadas dentro de una misma funcionalidad. |
+
 
 ### **Instalación de Paquetes**
 
