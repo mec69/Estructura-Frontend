@@ -383,10 +383,12 @@ ng test
 ```
 
 ### Resultados del Testeo
+
 Resultado a nivel CONSOLA: ![Ejemplo de Documentacion](https://i.ibb.co/5fXw3JM/Capturasfa.png)
 Resultado a nivel NAVEGADOR Verificación de estructura correcta: ![Ejemplo de Documentacion](https://i.ibb.co/wqQfr9r/Captura.png)
 
 **📌 Explicación**
+
 - ✅ Prueba la creación del componente: Verifica que ListadoClientesComponent se instancia correctamente.
 - ✅ Prueba el método getGreeting por defecto: Confirma que devuelve "Hola, Mundo!" cuando no se asigna un nombre.
 - ✅ Prueba el método getGreeting con nombre: Valida que devuelve "Hola, Carlos!" cuando se asigna un nombre.
@@ -395,14 +397,17 @@ Resultado a nivel NAVEGADOR Verificación de estructura correcta: ![Ejemplo de D
 ### Configuración del entorno E2E
 
 #### 1. Instalación de Playwright
+
 Ejecuta el siguiente comando para agregar Playwright a tu proyecto:
 
 ```sh
 ng add @angular/playwright
 ```
+
 Luego, crea el archivo de prueba en `e2e/listado-usuarios.spec.ts`.
 
 ---
+
 #### 2. Crear la prueba E2E para el servicio de usuarios
 
 **Servicio `UsuarioService`**
@@ -482,7 +487,7 @@ export class UsuariosComponent implements OnInit {
 
 #### 3. Crear la prueba E2E
 
-Archivo: `e2e/src/app.e2e-spec.ts`
+Archivo: `e2e/listado-usuarios.spec.ts`
 
 ```typescript
 import { test, expect } from "@playwright/test";
@@ -512,7 +517,7 @@ test("Debe cargar y mostrar la lista de usuarios en la tabla", async ({ page }) 
     console.log(`   🔹 Usuario ${i + 1}: ${nombre} | ✉️ ${email}`);
   }
   console.log("");
-  
+
   // 📌 5. Verificar que la tabla tiene usuarios
   expect(totalUsuarios).toBeGreaterThan(0);
 
@@ -588,7 +593,7 @@ ng serve
 Luego, ejecuta la prueba E2E con:
 
 ```sh
-npx playwright test
+npx playwright test e2e/listado-usuarios.spec.ts
 ```
 
 ---
@@ -601,7 +606,17 @@ Resultado a nivel CONSOLA: ![Ejemplo de Documentacion](https://i.ibb.co/F4YcXhwr
 
 **🚀 Beneficios de las pruebas E2E**
 
-Las pruebas E2E validan el flujo completo de la aplicación simulando la interacción del usuario.
+Estas pruebas son cruciales para garantizar que la aplicación funcione correctamente en diferentes escenarios
+
+- 📌 1. Navegar a la página de usuarios
+- 📌 2. Esperar a que la tabla de usuarios esté presente
+- 📌 3. Contar el número total de usuarios en la tabla
+- 📌 4. Listar datos del servicio usuarios en la consola con nombre y correo electrónico
+- 📌 5. Verificar que la tabla tiene usuarios
+- 📌 6. Validar que el primer usuario tenga datos correctos
+- 📌 7. Capturar evidencia visual de la tabla
+- 📌 8. Contar el número de usuarios después de eliminar
+- 📌 9. Capturar evidencia visual de la tabla antes y después de eliminar
 
 ---
 
