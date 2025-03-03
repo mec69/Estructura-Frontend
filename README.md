@@ -1,6 +1,7 @@
 # Proyecto Angular - Estructura y Guía de Desarrollo
 
 #### Tabla de Contenidos
+
 - [Estructura de Directorios y Archivos](./#estructura-de-directorios-y-archivos)
 - [Instalación de Paquetes](./#instalación-de-paquetes)
 - [Inicio del Servidor de Desarrollo](./#inicio-del-servidor-de-desarrollo)
@@ -382,12 +383,10 @@ ng test
 ```
 
 ### Resultados del Testeo
-
 Resultado a nivel CONSOLA: ![Ejemplo de Documentacion](https://i.ibb.co/5fXw3JM/Capturasfa.png)
 Resultado a nivel NAVEGADOR Verificación de estructura correcta: ![Ejemplo de Documentacion](https://i.ibb.co/wqQfr9r/Captura.png)
 
 **📌 Explicación**
-
 - ✅ Prueba la creación del componente: Verifica que ListadoClientesComponent se instancia correctamente.
 - ✅ Prueba el método getGreeting por defecto: Confirma que devuelve "Hola, Mundo!" cuando no se asigna un nombre.
 - ✅ Prueba el método getGreeting con nombre: Valida que devuelve "Hola, Carlos!" cuando se asigna un nombre.
@@ -396,17 +395,14 @@ Resultado a nivel NAVEGADOR Verificación de estructura correcta: ![Ejemplo de D
 ### Configuración del entorno E2E
 
 #### 1. Instalación de Playwright
-
 Ejecuta el siguiente comando para agregar Playwright a tu proyecto:
 
 ```sh
 ng add @angular/playwright
 ```
-
 Luego, crea el archivo de prueba en `e2e/listado-usuarios.spec.ts`.
 
 ---
-
 #### 2. Crear la prueba E2E para el servicio de usuarios
 
 **Servicio `UsuarioService`**
@@ -516,7 +512,7 @@ test("Debe cargar y mostrar la lista de usuarios en la tabla", async ({ page }) 
     console.log(`   🔹 Usuario ${i + 1}: ${nombre} | ✉️ ${email}`);
   }
   console.log("");
-
+  
   // 📌 5. Verificar que la tabla tiene usuarios
   expect(totalUsuarios).toBeGreaterThan(0);
 
@@ -601,7 +597,7 @@ npx playwright test
 
 <!--  -->
 
-Resultado a nivel CONSOLA: ![Ejemplo de Documentacion](https://i.ibb.co/6Rqb61NW/qwdqdqdq.png)
+Resultado a nivel CONSOLA: ![Ejemplo de Documentacion](https://i.ibb.co/F4YcXhwr/teste2e.png)
 
 **🚀 Beneficios de las pruebas E2E**
 
