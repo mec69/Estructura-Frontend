@@ -1,11 +1,6 @@
 # Proyecto Angular - Estructura y Guía de Desarrollo
 
-## Proyecto Angular - Estructura y Guía de Desarrollo
-
-#### Proyecto Angular - Estructura y Guía de Desarrollo
-
 #### Tabla de Contenidos
-
 - [Estructura de Directorios y Archivos](./#estructura-de-directorios-y-archivos)
 - [Instalación de Paquetes](./#instalación-de-paquetes)
 - [Inicio del Servidor de Desarrollo](./#inicio-del-servidor-de-desarrollo)
