@@ -3,13 +3,17 @@
 #### Tabla de Contenidos
 
 * [Estructura de Directorios y Archivos](./#estructura-de-directorios-y-archivos)
+* [Convenciones de Nomenclatura Angular](./#convenciones-de-nomenclatura-en-angular)
 * [Instalación de Paquetes](./#instalación-de-paquetes)
 * [Inicio del Servidor de Desarrollo](./#inicio-del-servidor-de-desarrollo)
+* [Accede a la aplicación](./#accede-a-la-aplicacion)
+* [Generación de Código](./#generacion-de-codigo)
 * [Compilación](./#compilación)
 * [Pruebas Unitarias](./#pruebas-unitarias)
+* [Resultado de Testeo](./#resultados-del-testeo)
 * [Configuración del entorno E2E](./#Configuración-del-entorno-e2e)
 
-**Estructura de Directorios y Archivos**
+### **Estructura de Directorios y Archivos**
 
 ```markup
 📁 src/ # Código fuente de la aplicación
@@ -162,7 +166,7 @@
 
 ```
 
-## 📌 Convenciones de Nomenclatura en Angular
+### Convenciones de Nomenclatura en Angular
 
 #### 🏗 Componentes
 
@@ -241,13 +245,13 @@ IPedido.interface.ts
 
 #### 📌 Otros archivos
 
-| Tipo       | Ejemplo                   | Descripción                                                                                                    |
-| ---------- | ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| Directivas | `resaltar.directive.ts`   | Define una directiva personalizada para modificar el comportamiento o apariencia de elementos en la plantilla. |
-| Pipes      | `formatear-fecha.pipe.ts` | Transforma datos en las plantillas, como dar formato a fechas o convertir textos.                              |
-| Guards     | `auth.guard.ts`           | Controla el acceso a rutas, asegurando que solo usuarios autorizados puedan acceder.                           |
-| Enums      | `estado-pedido.enum.ts`   | Define un conjunto de valores constantes para representar estados o categorías de forma estructurada.          |
-| Módulos    | `ventas.module.ts`        | Agrupa componentes, servicios y otras dependencias relacionadas dentro de una misma funcionalidad.             |
+| Tipo       | Ejemplo                   | Descripción                                                                                                                                                                                                                |
+| ---------- | ------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Directivas | `resaltar.directive.ts`   | Define una directiva personalizada para modificar el comportamiento o apariencia de elementos en la plantilla.                                                                                                             |
+| Pipes      | `formatear-fecha.pipe.ts` | Transforma datos en las plantillas, como dar formato a fechas o convertir textos.                                                                                                                                          |
+| Guards     | `auth.guard.ts`           | Controla el acceso a rutas, asegurando que solo usuarios autorizados puedan acceder.                                                                                                                                       |
+| Enums      | `estado-pedido.enum.ts`   | Define un conjunto de valores constantes para representar estados o categorías de forma estructurada. Se usa para hacer que el código sea más legible y evitar el uso de "números mágicos" o cadenas sueltas en el código. |
+| Módulos    | `ventas.module.ts`        | Agrupa componentes, servicios y otras dependencias relacionadas dentro de una misma funcionalidad.                                                                                                                         |
 
 ### **Instalación de Paquetes**
 
@@ -265,11 +269,11 @@ Ejecuta el siguiente comando para iniciar el servidor de desarrollo:
 ng serve
 ```
 
-### **🔗 Accede a la aplicación**
+### **Accede a la aplicación**
 
 en [`http://localhost:4200/`](http://localhost:4200/). La aplicación se recargará automáticamente si realizas cambios en los archivos fuente.
 
-### **⚡ Generación de Código**
+### &#x20;**Generación de Código**
 
 Para generar un nuevo componente, ejecuta:
 
@@ -396,10 +400,10 @@ ng test
 
 **📌 Explicación**
 
-* ✅ Prueba la creación del componente: Verifica que ListadoClientesComponent se instancia correctamente.
-* ✅ Prueba el método getGreeting por defecto: Confirma que devuelve "Hola, Mundo!" cuando no se asigna un nombre.
-* ✅ Prueba el método getGreeting con nombre: Valida que devuelve "Hola, Carlos!" cuando se asigna un nombre.
-* ✅ Asegura el funcionamiento correcto: Detecta errores tempranos y garantiza que el componente cumpla con su comportamiento esperado.
+* Prueba la creación del componente: Verifica que `ListadoClientesComponent` se instancia correctamente.
+* Prueba el método `getGreeting` por defecto: Confirma que devuelve "Hola, Mundo!" cuando no se asigna un nombre.
+* Prueba el método `getGreeting` con nombre: Valida que devuelve `"Hola, Carlos!"` cuando se asigna un nombre.
+* Asegura el funcionamiento correcto: Detecta errores tempranos y garantiza que el componente cumpla con su comportamiento esperado.
 
 ### Configuración del entorno E2E
 
@@ -607,21 +611,21 @@ npx playwright test e2e/listado-usuarios.spec.ts
 
 #### 5. Explicación del test
 
-Resultado a nivel CONSOLA: ![Ejemplo de Documentacion](https://i.ibb.co/F4YcXhwr/teste2e.png)
+<figure><img src="https://i.ibb.co/F4YcXhwr/teste2e.png" alt=""><figcaption><p>Resultado a nivel CONSOLA: </p></figcaption></figure>
 
 **🚀 Beneficios de las pruebas E2E**
 
 Estas pruebas son cruciales para garantizar que la aplicación funcione correctamente en diferentes escenarios
 
-* ✅ 1. Navegar a la página de usuarios
-* ✅ 2. Esperar a que la tabla de usuarios esté presente
-* ✅ 3. Contar el número total de usuarios en la tabla
-* ✅ 4. Listar datos del servicio usuarios en la consola con nombre y correo electrónico
-* ✅ 5. Verificar que la tabla tiene usuarios
-* ✅ 6. Validar que el primer usuario tenga datos correctos
-* ✅ 7. Capturar evidencia visual de la tabla
-* ✅ 8. Contar el número de usuarios después de eliminar
-* ✅ 9. Capturar evidencia visual de la tabla antes y después de eliminar
+* Navegar a la página de usuarios
+* Esperar a que la tabla de usuarios esté presente
+* Contar el número total de usuarios en la tabla
+* Listar datos del servicio usuarios en la consola con nombre y correo electrónico
+* Verificar que la tabla tiene usuarios
+* Validar que el primer usuario tenga datos correctos
+* Capturar evidencia visual de la tabla
+* Contar el número de usuarios después de eliminar
+* Capturar evidencia visual de la tabla antes y después de eliminar
 
 ***
 
