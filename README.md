@@ -12,7 +12,10 @@
 **Estructura de Directorios y Archivos**
 
 ```markup
-📁 src/  # Código fuente de la aplicación
+📁 src/ # Código fuente de la aplicación
+📁 e2e  # Carpetas para testeo
+├── 📄 listado-usuarios.spec.ts #Archivo para testeo general de este componente
+├── 📄 app.e2e-spec.ts
 ├── 📁 app/  # Carpeta principal de la aplicación Angular
 │   ├── 📁 core/  # Funcionalidades centrales y compartidas
 │   │   ├── 📁 components/  # Componentes reutilizables
@@ -31,6 +34,9 @@
 │   │   │   │   ├── 📄 mensaje-exitoso.component.html
 │   │   │   │   ├── 📄 mensaje-exitoso.component.spec.ts
 │   │   │   │   ├── 📄 mensaje-exitoso.component.ts
+|   |   |── 📁 directive/  # almacena directivas personalizadas comportamiento o apariencia de elementos
+│   │   │   │   ├── 📄 resaltar-texto.directive.ts
+│   │   │   │   ├── 📄 resaltar-texto.directive.spec.ts
 │   │   ├── 📁 interface/  # Interfaces utilizadas en la aplicación
 │   │   │   ├── 📄 funciones.interface.ts  # Definiciones de interfaces para funciones
 │   │   │   ├── 📄 validaciones.interface.ts  # Definiciones de interfaces para validaciones
@@ -148,6 +154,7 @@
 📄 package-lock.json  # Archivo que asegura la consistencia de las dependencias
 📄 package.json  # Archivo con las dependencias y scripts del proyecto
 📄 README.md  # Documentación del proyecto
+📄 playwright.config.ts  # configuracion
 📄 SUMMARY.md  # Documentación del proyecto
 📄 tsconfig.app.json  # Configuración de TypeScript específica para la aplicación
 📄 tsconfig.json  # Configuración global de TypeScript
@@ -609,15 +616,15 @@ Resultado a nivel CONSOLA: ![Ejemplo de Documentacion](https://i.ibb.co/F4YcXhwr
 
 Estas pruebas son cruciales para garantizar que la aplicación funcione correctamente en diferentes escenarios
 
-- 📌 1. Navegar a la página de usuarios
-- 📌 2. Esperar a que la tabla de usuarios esté presente
-- 📌 3. Contar el número total de usuarios en la tabla
-- 📌 4. Listar datos del servicio usuarios en la consola con nombre y correo electrónico
-- 📌 5. Verificar que la tabla tiene usuarios
-- 📌 6. Validar que el primer usuario tenga datos correctos
-- 📌 7. Capturar evidencia visual de la tabla
-- 📌 8. Contar el número de usuarios después de eliminar
-- 📌 9. Capturar evidencia visual de la tabla antes y después de eliminar
+- ✅ 1. Navegar a la página de usuarios
+- ✅ 2. Esperar a que la tabla de usuarios esté presente
+- ✅ 3. Contar el número total de usuarios en la tabla
+- ✅ 4. Listar datos del servicio usuarios en la consola con nombre y correo electrónico
+- ✅ 5. Verificar que la tabla tiene usuarios
+- ✅ 6. Validar que el primer usuario tenga datos correctos
+- ✅ 7. Capturar evidencia visual de la tabla
+- ✅ 8. Contar el número de usuarios después de eliminar
+- ✅ 9. Capturar evidencia visual de la tabla antes y después de eliminar
 
 ---
 

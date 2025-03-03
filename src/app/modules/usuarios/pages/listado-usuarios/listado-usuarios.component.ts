@@ -3,11 +3,12 @@ import { UserService } from '../../service/usuarios.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AgregarUsuariosComponent } from '../agregar-usuarios/agregar-usuarios.component';
+import { ResaltarTextoDirective } from '../../../../core/directive/resaltar-texto.directive';
 
 @Component({
   selector: 'app-listado-usuarios',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, AgregarUsuariosComponent],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, AgregarUsuariosComponent, ResaltarTextoDirective],
   templateUrl: './listado-usuarios.component.html',
   styleUrl: './listado-usuarios.component.css'
 })
