@@ -2,12 +2,12 @@
 
 #### Tabla de Contenidos
 
-- [Estructura de Directorios y Archivos](./#estructura-de-directorios-y-archivos)
-- [Instalación de Paquetes](./#instalación-de-paquetes)
-- [Inicio del Servidor de Desarrollo](./#inicio-del-servidor-de-desarrollo)
-- [Compilación](./#compilación)
-- [Pruebas Unitarias](./#pruebas-unitarias)
-- [Configuración del entorno E2E](./#Configuración-del-entorno-e2e)
+* [Estructura de Directorios y Archivos](./#estructura-de-directorios-y-archivos)
+* [Instalación de Paquetes](./#instalación-de-paquetes)
+* [Inicio del Servidor de Desarrollo](./#inicio-del-servidor-de-desarrollo)
+* [Compilación](./#compilación)
+* [Pruebas Unitarias](./#pruebas-unitarias)
+* [Configuración del entorno E2E](./#Configuración-del-entorno-e2e)
 
 **Estructura de Directorios y Archivos**
 
@@ -168,9 +168,9 @@
 
 Los nombres de los componentes deben:
 
-- Usar **kebab-case** (letras minúsculas separadas por guiones).
-- Terminar en `.component.ts`.
-- Ser descriptivos sobre su funcionalidad.
+* Usar **kebab-case** (letras minúsculas separadas por guiones).
+* Terminar en `.component.ts`.
+* Ser descriptivos sobre su funcionalidad.
 
 Ejemplos:
 
@@ -188,8 +188,8 @@ pedidos-filtrar.component.ts → "Filtrar" es el verbo y está al final.
 
 #### 📂 Carpetas
 
-- Deben nombrarse en **kebab-case**.
-- Representan la funcionalidad o entidad que agrupan.
+* Deben nombrarse en **kebab-case**.
+* Representan la funcionalidad o entidad que agrupan.
 
 Ejemplo:
 
@@ -201,9 +201,9 @@ reporte-ventas/
 
 #### 📜 Servicios
 
-- Usar **camelCase**.
-- Iniciar con un sustantivo que describa su propósito.
-- Terminar con `.service.ts`.
+* Usar **camelCase**.
+* Iniciar con un sustantivo que describa su propósito.
+* Terminar con `.service.ts`.
 
 Ejemplo:
 
@@ -215,8 +215,8 @@ pedido.service.ts
 
 #### 📊 Modelos
 
-- Usar **PascalCase**.
-- Terminar con `.model.ts`.
+* Usar **PascalCase**.
+* Terminar con `.model.ts`.
 
 Ejemplo:
 
@@ -228,8 +228,8 @@ Pedido.model.ts
 
 #### 🏛 Interfaces
 
-- Usar **PascalCase**.
-- Prefijar con `I`seguido de un sustantivo.
+* Usar **PascalCase**.
+* Prefijar con `I`seguido de un sustantivo.
 
 Ejemplo:
 
@@ -241,14 +241,13 @@ IPedido.interface.ts
 
 #### 📌 Otros archivos
 
-| Tipo       | Ejemplo                   | Descripción |
-| ---------- | ------------------------- | ----------- |
+| Tipo       | Ejemplo                   | Descripción                                                                                                    |
+| ---------- | ------------------------- | -------------------------------------------------------------------------------------------------------------- |
 | Directivas | `resaltar.directive.ts`   | Define una directiva personalizada para modificar el comportamiento o apariencia de elementos en la plantilla. |
-| Pipes      | `formatear-fecha.pipe.ts` | Transforma datos en las plantillas, como dar formato a fechas o convertir textos. |
-| Guards     | `auth.guard.ts`           | Controla el acceso a rutas, asegurando que solo usuarios autorizados puedan acceder. |
-| Enums      | `estado-pedido.enum.ts`   | Define un conjunto de valores constantes para representar estados o categorías de forma estructurada. |
-| Módulos    | `ventas.module.ts`        | Agrupa componentes, servicios y otras dependencias relacionadas dentro de una misma funcionalidad. |
-
+| Pipes      | `formatear-fecha.pipe.ts` | Transforma datos en las plantillas, como dar formato a fechas o convertir textos.                              |
+| Guards     | `auth.guard.ts`           | Controla el acceso a rutas, asegurando que solo usuarios autorizados puedan acceder.                           |
+| Enums      | `estado-pedido.enum.ts`   | Define un conjunto de valores constantes para representar estados o categorías de forma estructurada.          |
+| Módulos    | `ventas.module.ts`        | Agrupa componentes, servicios y otras dependencias relacionadas dentro de una misma funcionalidad.             |
 
 ### **Instalación de Paquetes**
 
@@ -298,8 +297,7 @@ ng build
 ng test
 ```
 
-ejecuta las pruebas unitarias en un proyecto Angular utilizando Karma como corredor de pruebas.
-Permite verificar el funcionamiento de los componentes, servicios y lógica del código de manera automatizada.
+ejecuta las pruebas unitarias en un proyecto Angular utilizando Karma como corredor de pruebas. Permite verificar el funcionamiento de los componentes, servicios y lógica del código de manera automatizada.
 
 #### **2️⃣ Componente `usuarios.component.ts`**
 
@@ -392,15 +390,16 @@ ng test
 
 ### Resultados del Testeo
 
-Resultado a nivel CONSOLA: ![Ejemplo de Documentacion](https://i.ibb.co/5fXw3JM/Capturasfa.png)
-Resultado a nivel NAVEGADOR Verificación de estructura correcta: ![Ejemplo de Documentacion](https://i.ibb.co/wqQfr9r/Captura.png)
+<figure><img src="https://i.ibb.co/wqQfr9r/Captura.png" alt=""><figcaption><p>Resultado a nivel CONSOLA</p></figcaption></figure>
+
+<figure><img src="https://i.ibb.co/5fXw3JM/Capturasfa.png" alt=""><figcaption><p> Resultado a nivel NAVEGADOR </p></figcaption></figure>
 
 **📌 Explicación**
 
-- ✅ Prueba la creación del componente: Verifica que ListadoClientesComponent se instancia correctamente.
-- ✅ Prueba el método getGreeting por defecto: Confirma que devuelve "Hola, Mundo!" cuando no se asigna un nombre.
-- ✅ Prueba el método getGreeting con nombre: Valida que devuelve "Hola, Carlos!" cuando se asigna un nombre.
-- ✅ Asegura el funcionamiento correcto: Detecta errores tempranos y garantiza que el componente cumpla con su comportamiento esperado.
+* ✅ Prueba la creación del componente: Verifica que ListadoClientesComponent se instancia correctamente.
+* ✅ Prueba el método getGreeting por defecto: Confirma que devuelve "Hola, Mundo!" cuando no se asigna un nombre.
+* ✅ Prueba el método getGreeting con nombre: Valida que devuelve "Hola, Carlos!" cuando se asigna un nombre.
+* ✅ Asegura el funcionamiento correcto: Detecta errores tempranos y garantiza que el componente cumpla con su comportamiento esperado.
 
 ### Configuración del entorno E2E
 
@@ -414,7 +413,7 @@ ng add @angular/playwright
 
 Luego, crea el archivo de prueba en `e2e/listado-usuarios.spec.ts`.
 
----
+***
 
 #### 2. Crear la prueba E2E para el servicio de usuarios
 
@@ -491,7 +490,7 @@ export class UsuariosComponent implements OnInit {
 }
 ```
 
----
+***
 
 #### 3. Crear la prueba E2E
 
@@ -586,7 +585,7 @@ test("Debe eliminar un usuario correctamente", async ({ page }) => {
 });
 ```
 
----
+***
 
 #### 4. Ejecutar las pruebas
 
@@ -604,11 +603,9 @@ Luego, ejecuta la prueba E2E con:
 npx playwright test e2e/listado-usuarios.spec.ts
 ```
 
----
+***
 
 #### 5. Explicación del test
-
-<!--  -->
 
 Resultado a nivel CONSOLA: ![Ejemplo de Documentacion](https://i.ibb.co/F4YcXhwr/teste2e.png)
 
@@ -616,16 +613,16 @@ Resultado a nivel CONSOLA: ![Ejemplo de Documentacion](https://i.ibb.co/F4YcXhwr
 
 Estas pruebas son cruciales para garantizar que la aplicación funcione correctamente en diferentes escenarios
 
-- ✅ 1. Navegar a la página de usuarios
-- ✅ 2. Esperar a que la tabla de usuarios esté presente
-- ✅ 3. Contar el número total de usuarios en la tabla
-- ✅ 4. Listar datos del servicio usuarios en la consola con nombre y correo electrónico
-- ✅ 5. Verificar que la tabla tiene usuarios
-- ✅ 6. Validar que el primer usuario tenga datos correctos
-- ✅ 7. Capturar evidencia visual de la tabla
-- ✅ 8. Contar el número de usuarios después de eliminar
-- ✅ 9. Capturar evidencia visual de la tabla antes y después de eliminar
+* ✅ 1. Navegar a la página de usuarios
+* ✅ 2. Esperar a que la tabla de usuarios esté presente
+* ✅ 3. Contar el número total de usuarios en la tabla
+* ✅ 4. Listar datos del servicio usuarios en la consola con nombre y correo electrónico
+* ✅ 5. Verificar que la tabla tiene usuarios
+* ✅ 6. Validar que el primer usuario tenga datos correctos
+* ✅ 7. Capturar evidencia visual de la tabla
+* ✅ 8. Contar el número de usuarios después de eliminar
+* ✅ 9. Capturar evidencia visual de la tabla antes y después de eliminar
 
----
+***
 
 📖 **Recomendación:** Mantén un equilibrio entre **pruebas unitarias** y **pruebas E2E** para garantizar la calidad del código sin afectar la velocidad de desarrollo. 🚀
