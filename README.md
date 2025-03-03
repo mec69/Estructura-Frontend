@@ -1,17 +1,12 @@
 # Proyecto Angular - Estructura y Guía de Desarrollo
 
-## Proyecto Angular - Estructura y Guía de Desarrollo
-
-#### Proyecto Angular - Estructura y Guía de Desarrollo
-
 #### Tabla de Contenidos
-
-* [Estructura de Directorios y Archivos](./#estructura-de-directorios-y-archivos)
-* [Instalación de Paquetes](./#instalación-de-paquetes)
-* [Inicio del Servidor de Desarrollo](./#inicio-del-servidor-de-desarrollo)
-* [Compilación](./#compilación)
-* [Pruebas Unitarias](./#pruebas-unitarias)
-* [Configuración del entorno E2E](./#Configuración-del-entorno-e2e)
+- [Estructura de Directorios y Archivos](./#estructura-de-directorios-y-archivos)
+- [Instalación de Paquetes](./#instalación-de-paquetes)
+- [Inicio del Servidor de Desarrollo](./#inicio-del-servidor-de-desarrollo)
+- [Compilación](./#compilación)
+- [Pruebas Unitarias](./#pruebas-unitarias)
+- [Configuración del entorno E2E](./#Configuración-del-entorno-e2e)
 
 **Estructura de Directorios y Archivos**
 
@@ -156,6 +151,7 @@
 📄 tsconfig.app.json  # Configuración de TypeScript específica para la aplicación
 📄 tsconfig.json  # Configuración global de TypeScript
 📄 tsconfig.spec.json  # Configuración TypeScript para pruebas unitarias
+
 ```
 
 ## 📌 Convenciones de Nomenclatura en Angular
@@ -164,9 +160,9 @@
 
 Los nombres de los componentes deben:
 
-* Usar **kebab-case** (letras minúsculas separadas por guiones).
-* Terminar en `.component.ts`.
-* Ser descriptivos sobre su funcionalidad.
+- Usar **kebab-case** (letras minúsculas separadas por guiones).
+- Terminar en `.component.ts`.
+- Ser descriptivos sobre su funcionalidad.
 
 Ejemplos:
 
@@ -184,8 +180,8 @@ pedidos-filtrar.component.ts → "Filtrar" es el verbo y está al final.
 
 #### 📂 Carpetas
 
-* Deben nombrarse en **kebab-case**.
-* Representan la funcionalidad o entidad que agrupan.
+- Deben nombrarse en **kebab-case**.
+- Representan la funcionalidad o entidad que agrupan.
 
 Ejemplo:
 
@@ -197,9 +193,9 @@ reporte-ventas/
 
 #### 📜 Servicios
 
-* Usar **camelCase**.
-* Iniciar con un sustantivo que describa su propósito.
-* Terminar con `.service.ts`.
+- Usar **camelCase**.
+- Iniciar con un sustantivo que describa su propósito.
+- Terminar con `.service.ts`.
 
 Ejemplo:
 
@@ -211,8 +207,8 @@ pedido.service.ts
 
 #### 📊 Modelos
 
-* Usar **PascalCase**.
-* Terminar con `.model.ts`.
+- Usar **PascalCase**.
+- Terminar con `.model.ts`.
 
 Ejemplo:
 
@@ -224,8 +220,8 @@ Pedido.model.ts
 
 #### 🏛 Interfaces
 
-* Usar **PascalCase**.
-* Prefijar con `I`seguido de un sustantivo.
+- Usar **PascalCase**.
+- Prefijar con `I`seguido de un sustantivo.
 
 Ejemplo:
 
@@ -289,115 +285,90 @@ ng build
 
 ### **Pruebas Unitarias**
 
-Para ejecutar las pruebas unitarias en el proyecto, usa el siguiente comando:
-
 ```sh
 ng test
 ```
 
-#### **1️⃣ Configurar el `usuarios.service.ts`**
-
-Este servicio lista los usuarios y se usará en el test.
-
-```typescript
-import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs";
-
-@Injectable({
-  providedIn: "root",
-})
-export class UsuariosService {
-  private apiUrl = "https://jsonplaceholder.typicode.com/users";
-
-  constructor(private http: HttpClient) {}
-
-  listarUsuarios(): Observable<any[]> {
-    return this.http.get<any[]>(this.apiUrl);
-  }
-}
-```
+ejecuta las pruebas unitarias en un proyecto Angular utilizando Karma como corredor de pruebas.
+Permite verificar el funcionamiento de los componentes, servicios y lógica del código de manera automatizada.
 
 #### **2️⃣ Componente `usuarios.component.ts`**
 
 Este componente usa `UsuariosService` para listar usuarios.
 
 ```typescript
-import { Component, OnInit } from "@angular/core";
-import { UsuariosService } from "../services/usuarios.service";
+import { Component, Input } from "@angular/core";
+import { IClientes } from "../../interface/clientes.interface";
+import { ClientesService } from "../../services/clientes.service";
+import { CommonModule } from "@angular/common";
+import { FormsModule } from "@angular/forms";
 
 @Component({
-  selector: "app-usuarios",
-  templateUrl: "./usuarios.component.html",
-  styleUrls: ["./usuarios.component.scss"],
+  selector: "app-listado-clientes",
+  standalone: true,
+  imports: [CommonModule, FormsModule],
+  providers: [ClientesService], // Proporciona el servicio
+  templateUrl: "./listado-clientes.component.html",
+  styleUrl: "./listado-clientes.component.css",
 })
-export class UsuariosComponent implements OnInit {
-  usuarios: any[] = [];
+export class ListadoClientesComponent {
+  @Input() name: string = "Mundo";
 
-  constructor(private usuariosService: UsuariosService) {}
-
-  ngOnInit() {
-    this.usuariosService.listarUsuarios().subscribe((data) => {
-      this.usuarios = data;
-    });
+  getGreeting(): string {
+    return `Hola, ${this.name}!`;
   }
+
+  clientes: IClientes[] = [];
+
+  constructor(private clientesService: ClientesService) {}
+
+  ngOnInit(): void {}
 }
 ```
 
-#### **3️⃣ Test `usuarios.component.spec.ts`**
+#### 3️⃣ Test `Clientes.component.spec.ts`
 
 Para probar el componente, usamos `HttpTestingController` para simular la API.
 
 ```typescript
 import { ComponentFixture, TestBed } from "@angular/core/testing";
-import { UsuariosComponent } from "./usuarios.component";
-import { UsuariosService } from "../services/usuarios.service";
-import { HttpClientTestingModule, HttpTestingController } from "@angular/common/http/testing";
+import { HttpClientModule } from "@angular/common/http";
+import { ListadoClientesComponent } from "./listado-clientes.component";
 
-describe("UsuariosComponent", () => {
-  let component: UsuariosComponent;
-  let fixture: ComponentFixture<UsuariosComponent>;
-  let usuariosService: UsuariosService;
-  let httpMock: HttpTestingController;
+describe("ListadoClientesComponent", () => {
+  let component: ListadoClientesComponent;
+  let fixture: ComponentFixture<ListadoClientesComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [UsuariosComponent],
-      imports: [HttpClientTestingModule],
-      providers: [UsuariosService],
+      imports: [
+        HttpClientModule, // Importamos el módulo HTTP
+        ListadoClientesComponent, // ✅ Importamos el componente standalone aquí
+      ],
     }).compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(UsuariosComponent);
+    fixture = TestBed.createComponent(ListadoClientesComponent);
     component = fixture.componentInstance;
-    usuariosService = TestBed.inject(UsuariosService);
-    httpMock = TestBed.inject(HttpTestingController);
     fixture.detectChanges();
   });
 
-  afterEach(() => {
-    httpMock.verify();
-  });
-
-  it("debería crear el componente", () => {
+  it("Debe crearse el componente", () => {
     expect(component).toBeTruthy();
+    console.log("%c✅ Prueba exitosa: El componente se creó correctamente", "color: green; font-weight: bold;");
+  });
+  it("Debe devolver el saludo por defecto", () => {
+    const resultado = component.getGreeting();
+    expect(resultado).toBe("Hola, Mundo!");
+    console.log("%c✅ Prueba exitosa: getGreeting() devuelve el saludo por defecto", "color: green; font-weight: bold;");
   });
 
-  it("debería listar usuarios correctamente", () => {
-    const mockUsuarios = [
-      { id: 1, name: "Juan" },
-      { id: 2, name: "María" },
-    ];
-
-    component.ngOnInit();
-
-    const req = httpMock.expectOne("https://jsonplaceholder.typicode.com/users");
-    expect(req.request.method).toBe("GET");
-    req.flush(mockUsuarios);
-
-    expect(component.usuarios.length).toBe(2);
-    expect(component.usuarios).toEqual(mockUsuarios);
+  it("Debe devolver el saludo con un nombre específico", () => {
+    component.name = "Carlos";
+    const resultado = component.getGreeting();
+    expect(resultado).toBe("Hola, Carlos!");
+    console.log("%c✅ Prueba exitosa: getGreeting() devuelve el saludo con un nombre", "color: green; font-weight: bold;");
   });
 });
 ```
@@ -410,15 +381,17 @@ Para correr los tests, usa el siguiente comando en la terminal:
 ng test
 ```
 
+### Resultados del Testeo
+
+Resultado a nivel CONSOLA: ![Ejemplo de Documentacion](https://i.ibb.co/5fXw3JM/Capturasfa.png)
+Resultado a nivel NAVEGADOR Verificación de estructura correcta: ![Ejemplo de Documentacion](https://i.ibb.co/wqQfr9r/Captura.png)
+
 **📌 Explicación**
 
-* ✅ Se configura el módulo de prueba con `HttpClientTestingModule` para mockear peticiones HTTP.
-* ✅ Se inyecta `HttpTestingController` para interceptar y simular respuestas HTTP.
-* ✅ Se prueba que el componente se cree correctamente.
-* ✅ Se prueba que `listarUsuarios()` obtenga los datos y los asigne correctamente al array `usuarios`.
-* ✅ Se usa `expectOne()` para verificar que solo haya una petición HTTP con `GET`.
-* ✅ Se usa `flush()` para devolver los datos simulados a la prueba.
-* ✅ Con esta prueba, aseguramos que el componente `UsuariosComponent` obtiene y muestra correctamente la lista de usuarios. 🚀
+- ✅ Prueba la creación del componente: Verifica que ListadoClientesComponent se instancia correctamente.
+- ✅ Prueba el método getGreeting por defecto: Confirma que devuelve "Hola, Mundo!" cuando no se asigna un nombre.
+- ✅ Prueba el método getGreeting con nombre: Valida que devuelve "Hola, Carlos!" cuando se asigna un nombre.
+- ✅ Asegura el funcionamiento correcto: Detecta errores tempranos y garantiza que el componente cumpla con su comportamiento esperado.
 
 ### Configuración del entorno E2E
 
@@ -430,9 +403,9 @@ Ejecuta el siguiente comando para agregar Playwright a tu proyecto:
 ng add @angular/playwright
 ```
 
-Luego, crea el archivo de prueba en `e2e/src/app.e2e-spec.ts`.
+Luego, crea el archivo de prueba en `e2e/listado-usuarios.spec.ts`.
 
-***
+---
 
 #### 2. Crear la prueba E2E para el servicio de usuarios
 
@@ -471,9 +444,29 @@ import { UsuarioService } from "../services/usuario.service";
   selector: "app-usuarios",
   template: `
     <h2>Lista de Usuarios</h2>
-    <ul>
-      <li *ngFor="let usuario of usuarios">{{ usuario.name }}</li>
-    </ul>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Usuario</th>
+          <th>Email</th>
+          <th class="tc">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of usuarios; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ user.name }}</td>
+          <td>{{ user.username }}</td>
+          <td>{{ user.email }}</td>
+          <td class="tc">
+            <button class="btn" (click)="editarUsuario(user)">Editar</button>
+            <button class="btn delete" (click)="eliminarUsuario(i)">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   `,
 })
 export class UsuariosComponent implements OnInit {
@@ -489,7 +482,7 @@ export class UsuariosComponent implements OnInit {
 }
 ```
 
-***
+---
 
 #### 3. Crear la prueba E2E
 
@@ -498,20 +491,93 @@ Archivo: `e2e/src/app.e2e-spec.ts`
 ```typescript
 import { test, expect } from "@playwright/test";
 
-test("Debe listar usuarios en la página", async ({ page }) => {
-  // Ir a la página donde se listan los usuarios
-  await page.goto("http://localhost:4200/usuarios");
+test("Debe cargar y mostrar la lista de usuarios en la tabla", async ({ page }) => {
+  console.log("\n-------------------------------");
+  console.log("🔍 Iniciando prueba: Listado de usuarios");
+  console.log("-------------------------------\n");
 
-  // Esperar a que los usuarios se carguen
-  await page.waitForSelector("li");
+  // 📌 1. Navegar a la página de usuarios
+  await page.goto("http://localhost:4200/listado-usuarios");
 
-  // Verificar que al menos 1 usuario está listado
-  const usuarios = await page.locator("li").count();
-  expect(usuarios).toBeGreaterThan(0);
+  // 📌 2. Esperar a que la tabla de usuarios esté presente
+  const tablaUsuarios = page.locator("table tbody tr");
+  await tablaUsuarios.first().waitFor(); // Se asegura de que haya al menos un usuario cargado
+
+  // 📌 3. Contar el número total de usuarios en la tabla
+  const totalUsuarios = await tablaUsuarios.count();
+  console.log(`📌 Número total de usuarios encontrados: ${totalUsuarios}\n`);
+
+  // 📌 4. Listar usuarios en la consola con nombre y correo electrónico
+  console.log("👥 Lista de usuarios:");
+  for (let i = 0; i < totalUsuarios; i++) {
+    const usuarioFila = tablaUsuarios.nth(i);
+    const nombre = await usuarioFila.locator("td:nth-child(2)").innerText();
+    const email = await usuarioFila.locator("td:nth-child(3)").innerText();
+    console.log(`   🔹 Usuario ${i + 1}: ${nombre} | ✉️ ${email}`);
+  }
+  console.log("");
+
+  // 📌 5. Verificar que la tabla tiene usuarios
+  expect(totalUsuarios).toBeGreaterThan(0);
+
+  // 📌 6. Validar que el primer usuario tenga datos correctos
+  const primerUsuarioNombre = await tablaUsuarios.first().locator("td:nth-child(2)").textContent();
+  const primerUsuarioEmail = await tablaUsuarios.first().locator("td:nth-child(3)").textContent();
+  const primerUsuarioUsuario = await tablaUsuarios.first().locator("td:nth-child(4)").textContent();
+
+  expect(primerUsuarioNombre).not.toBeNull();
+  expect(primerUsuarioEmail).not.toBeNull();
+  expect(primerUsuarioUsuario).not.toBeNull();
+
+  console.log("\n✅ Datos del primer usuario:");
+  console.log(`   🏷️ Nombre: ${primerUsuarioNombre} | ✉️ Email: ${primerUsuarioEmail} | 🆔 Usuario: ${primerUsuarioUsuario}\n`);
+
+  // 📌 7. Capturar evidencia visual de la tabla
+  await page.screenshot({ path: "evidencia-listado-usuarios.png", fullPage: true });
+  console.log("📸 Captura de pantalla guardada: evidencia-listado-usuarios.png\n");
+
+  console.log("✅ Prueba completada correctamente\n");
+});
+
+test("Debe eliminar un usuario correctamente", async ({ page }) => {
+  console.log("\n-------------------------------");
+  console.log("🗑️ Iniciando prueba: Eliminación de usuario");
+  console.log("-------------------------------\n");
+
+  // 📌 1. Navegar a la página de listado de usuarios
+  await page.goto("http://localhost:4200/listado-usuarios");
+
+  // 📌 2. Esperar a que la tabla de usuarios cargue
+  await page.waitForSelector("table tbody tr");
+
+  // 📌 3. Contar el número de usuarios antes de eliminar
+  const usuariosAntes = await page.locator("table tbody tr").count();
+  console.log(`📌 Usuarios antes de eliminar: ${usuariosAntes}\n`);
+  expect(usuariosAntes).toBeGreaterThan(0);
+
+  // 📌 4. Hacer clic en el botón "Eliminar" del primer usuario
+  await page.locator("table tbody tr:first-child .delete").click();
+
+  // 📌 5. Esperar a que la tabla se actualice
+  await page.waitForSelector("table tbody tr", { state: "attached" });
+
+  // 📌 6. Contar el número de usuarios después de eliminar
+  const usuariosDespues = await page.locator("table tbody tr").count();
+  console.log(`📌 Usuarios después de eliminar: ${usuariosDespues}\n`);
+  expect(usuariosDespues).toBeLessThan(usuariosAntes);
+
+  // 📌 7. Capturar evidencia visual de la tabla antes y después de eliminar
+  await page.screenshot({ path: "evidencia-listado-usuarios.png", fullPage: true });
+  console.log("📸 Captura de pantalla guardada: evidencia-listado-usuarios.png\n");
+
+  await page.screenshot({ path: "evidencia-eliminar-usuario.png", fullPage: true });
+  console.log("📸 Captura de pantalla guardada: evidencia-eliminar-usuario.png\n");
+
+  console.log("✅ Prueba completada correctamente\n");
 });
 ```
 
-***
+---
 
 #### 4. Ejecutar las pruebas
 
@@ -529,25 +595,18 @@ Luego, ejecuta la prueba E2E con:
 npx playwright test
 ```
 
-***
+---
 
 #### 5. Explicación del test
 
-* ✅ Abre la página `/usuarios`.
-* ✅ Espera que se carguen los usuarios con `waitForSelector('li')`.
-* ✅ Cuenta los elementos `<li>` para verificar que la lista no está vacía.
-* ✅ Verifica que al menos hay 1 usuario cargado con `expect().toBeGreaterThan(0)`.
+<!--  -->
 
-***
+Resultado a nivel CONSOLA: ![Ejemplo de Documentacion](https://i.ibb.co/6Rqb61NW/qwdqdqdq.png)
 
 **🚀 Beneficios de las pruebas E2E**
 
-Las pruebas E2E validan el flujo completo de la aplicación simulando la interacción del usuario. Sus ventajas incluyen:
+Las pruebas E2E validan el flujo completo de la aplicación simulando la interacción del usuario.
 
-* 🔹 **Simulación de escenarios reales de uso.**
-* 🔹 **Detección de errores en la integración entre componentes y servicios.**
-* 🔹 **Garantía de estabilidad en la navegación y experiencia del usuario.**
-
-***
+---
 
 📖 **Recomendación:** Mantén un equilibrio entre **pruebas unitarias** y **pruebas E2E** para garantizar la calidad del código sin afectar la velocidad de desarrollo. 🚀

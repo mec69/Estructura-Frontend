@@ -1,1 +1,7 @@
-<p>agregar-usuarios works!</p>
+<h2>Agregar Usuario</h2>
+<div class="form-container">
+    <input type="text" placeholder="Nombre" [(ngModel)]="nombre">
+    <input type="email" placeholder="Correo" [(ngModel)]="email">
+    <input type="tel" placeholder="Teléfono" [(ngModel)]="username">
+    <button (click)="agregarUsuario()">Agregar Usuario</button>
+</div>
