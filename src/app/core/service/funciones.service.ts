@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Envsystem } from '../model/env.model';
-import { IClientes } from '../../modules/clientes/interface/clientes.interface';
+import { Envsystem } from '../model/Env.model';
+import { IClientes } from '../../modules/clientes/interface/IClientes.interface';
 
 
 /**

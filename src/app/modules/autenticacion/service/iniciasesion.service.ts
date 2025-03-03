@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Usuario } from '../interface/inicioSesion.interface';
-import { Envsystem } from '../../../core/model/env.model';
+import { Envsystem } from '../../../core/model/Env.model';
 
 /**
  * Servicio para gestionar la autenticación del usuario.

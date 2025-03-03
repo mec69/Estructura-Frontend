@@ -10,8 +10,13 @@
         </nav>
     </aside>
 
+
     <main class="content">
         <app-agregar-usuarios (usuarioAgregado)="agregarUsuario($event)"></app-agregar-usuarios>
+        <br>
+        <p appResaltarTexto>Texto resaltado por defecto</p>
+        <p appResaltarTexto colorResaltar="red">Texto resaltado en rojo</p>
+        <p appResaltarTexto colorResaltar="green">Texto resaltado en verde</p>
         <br>
         <table>
             <thead>
